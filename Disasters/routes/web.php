@@ -69,6 +69,6 @@ Route::get('/Asking', function () {
     return view('Asking');
 });
 
-Route::get('/', function () {
+Route::get('/Govn_Rep', function () {
     return view('Govn_Rep');
 });
