@@ -11,9 +11,30 @@
 |
 */
 
+Route::get('/Cas_Crim_Base', function () {
+    return view('Cas_Crim_Base');
+});
+Route::get('/Human_Made', function () {
+    return view('Human_Made');
+});
+Route::get('/Add_Criminal', function () {
+    return view('Add_Criminal');
+});
+Route::get('/Add_Casuality', function () {
+    return view('Add_Casuality');
+});
+Route::get('/Add_Incident', function () {
+    return view('Add_Incident');
+});
+Route::get('/Natural', function () {
+    return view('Natural');
+});
 
-Route::get('/Login', function () {
+Route::get('/login', function () {
     return view('Login');
+});
+Route::get('/Add_Incident_Base', function () {
+    return view('Add_Incident_Base');
 });
 
 Route::get('/Disaster_View', function () {
@@ -48,6 +69,6 @@ Route::get('/Asking', function () {
     return view('Asking');
 });
 
-Route::get('/Govn_Rep', function () {
+Route::get('/', function () {
     return view('Govn_Rep');
 });

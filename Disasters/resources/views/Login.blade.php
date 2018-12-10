@@ -131,7 +131,7 @@ function test_input($data) {
 
   </div>
 
-  <div class="col-lg-6" style="margin-top:6px"><h4>New Member?</h4>
+  <div class="col-lg-6" style="margin-top:6px"><h1>New Member?</h1>
   <?php
 // define variables and set to empty values
 $usernameErrN = $passwordErrN = $ssnErrN =$genderErr = $ageErr = $nameErr=$addressErr =  "";

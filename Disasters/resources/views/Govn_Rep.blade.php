@@ -6,6 +6,10 @@
       <br>
       <h4><a href="Add_Incident">Add Incident</a></h4>
       <br>
+      <h4><a href="/Add_Casuality">Add Casuality</a></h4>
+      <br>
+      <h4><a href="/Add_Criminal">Add Criminal</a></h4>
+      <br>
       <h4><a href="/Main">View Previous Events</a></h4>
       <br>
       <h4><a href="#">Current Reports</a></h4>
