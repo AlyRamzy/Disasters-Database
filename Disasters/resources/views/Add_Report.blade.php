@@ -10,9 +10,10 @@
         <hr>
         <h3>Write your Report</h3>
       <div class="form-group" style="margin-top:17px">
-          <form method="post" action="Add_Report">
+          <form method="post" action="/Add_Report">
+          {{ csrf_field() }}
 
-          <textarea class="form-control" type="text" name="usrname" rows="13" required>Enter your text here...</textarea>
+          <textarea class="form-control" type="text" name="rep_txt" rows="13" required>Enter your text here...</textarea>
 
           <input type="submit" class="btn btn-success"></input>
 
