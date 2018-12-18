@@ -74,3 +74,5 @@ Route::get('/', function () {
 });
 
 Route::post('/Add_Report', 'AddReportController@Add');
+
+Route::post('/Asking', 'AskingController@Add');

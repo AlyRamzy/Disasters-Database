@@ -8,9 +8,16 @@
       <hr>
       <h3>Your Question </h3>
       <div class="form-group" style="margin-top:19px">
-          <textarea class="form-control" rows="5" required></textarea>
-          <p></p>
-          <input type="submit" class="btn btn-success" style="margin-top:9px"></input>
+        <form method="post" action="/Asking">
+          {{ csrf_field() }}
+
+          Enter the Incident ID:  <input type="number" name="in_id" style="margin-bottom:19px">
+
+          <textarea class="form-control" type="text" name="question_txt" rows="3" required>Enter your question here...</textarea>
+
+          <input type="submit" class="btn btn-success" style="margin-top:19px"></input>
+
+        </form>
         </div>
     </div>
     <div class="col-sm-2 sidenav">

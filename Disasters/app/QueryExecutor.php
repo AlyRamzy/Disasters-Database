@@ -30,6 +30,30 @@ class QueryExecutor extends Model
     }
   }
 
+  public function getIncID()
+  {
+    $sql = "Select id From incident";
+
+    if (mysqli_query($this->conn, $sql)) {
+        $data = mysqli_query($this->conn, $sql);
+        return ($data);
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+        return;
+    }
+  }
+
+  public function addDisc($inc_id, $question)
+  {
+    $sql = "Insert into discussion (question, incident_id,  citizen_ssn) values ('".$question."', ".$inc_id.", '0312321312')"; //User SSN s is to be taken from the cookie once log in is done
+
+    if (mysqli_query($this->conn, $sql)) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+    }
+  }
+
   function __destruct()
   {
     mysqli_close($this->conn);
