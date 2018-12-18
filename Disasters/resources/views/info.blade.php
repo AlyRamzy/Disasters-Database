@@ -3,7 +3,7 @@
 @section('content')
 
       <div class="input-group" >
-        <input type="text" class="form-control" style="padding:20px" placeholder="Disaster Name..">
+        <input type="text" class="form-control" name = "D_name" style="padding:20px" placeholder="Disaster Name..">
 
      </div>
      <div class="input-group" style="margin-top:20px" >

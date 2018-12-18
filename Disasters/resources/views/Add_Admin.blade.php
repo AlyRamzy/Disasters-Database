@@ -86,8 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h2>Sign up</h2>
-<p><span class="error"> required field</span></p>
+<h3><span class="error"> required field</span></h3>
+<br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 Name: <input type="text" name="name" style="margin-left:31px" value="<?php echo $name;?>">
   <span class="error"> <?php echo $nameErr;?></span>
@@ -110,8 +110,8 @@ Name: <input type="text" name="name" style="margin-left:31px" value="<?php echo 
 
 
   Gender:
-  <input type="radio" name="gender" style="margin-left:27px" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
-  <input type="radio" name="gender" style="margin-left:9px" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
+  <input type="radio" name="gender" style="margin-left:27px" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female"> Female
+  <input type="radio" name="gender" style="margin-left:9px" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male"> Male
   <span class="error"> <?php echo $genderErr;?></span>
   <br><br>
   <input type="submit" name="submit"  style="margin-top:10px" value="Submit">

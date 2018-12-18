@@ -72,3 +72,5 @@ Route::get('/Asking', function () {
 Route::get('/', function () {
     return view('Govn_Rep');
 });
+
+Route::post('/Add_Report', 'AddReportController@Add');
