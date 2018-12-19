@@ -14,9 +14,12 @@
 Route::get('/Cas_Crim_Base', function () {
     return view('Cas_Crim_Base');
 });
-Route::get('/Human_Made', function () {
-    return view('Human_Made');
-});
+//Route::get('/Human_Made', function () {
+  //  return view('Human_Made');
+//});
+Route::get('/Human_Made','IncidentController@humanmade');
+Route::post('/Human_Made','IncidentController@Addhumanmade');
+Route::get('/Natural','IncidentController@natural');
 Route::get('/Add_Criminal', function () {
     return view('Add_Criminal');
 });
@@ -26,9 +29,9 @@ Route::get('/Add_Casuality', function () {
 Route::get('/Add_Incident', function () {
     return view('Add_Incident');
 });
-Route::get('/Natural', function () {
-    return view('Natural');
-});
+//Route::get('/Natural', function () {
+  //  return view('Natural');
+//});
 
 Route::get('/login', function () {
     return view('Login');
@@ -69,6 +72,6 @@ Route::get('/Asking', function () {
     return view('Asking');
 });
 
-Route::get('/', function () {
+Route::get('/Govn_Rep', function () {
     return view('Govn_Rep');
 });

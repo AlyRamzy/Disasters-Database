@@ -18,11 +18,103 @@ class QueryExecutor extends Model
         die("Connection failed: " . mysqli_connect_error());
     }
   }
+  public function RemoveUser($ssn)
+  {
+    $sql="DELETE FROM person WHERE ssn='". $ssn."'";
+    if(mysqli_query($this->conn,$sql)){
+      echo "User Removed Successfully";
+      return;
+    }
+    else{
+      echo "Error Deleting User"."<br>". mysqli_error($this->conn);
+      return;
+
+    }
+  }
+
+  public function GetDisasters()
+  {
+    $sql="SELECT name FROM disaster ";
+    if(mysqli_query($this->conn,$sql)){
+      
+      $data= mysqli_query($this->conn,$sql);
+      return ($data);
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+
+    }
+  }
+  public function InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$name,$causes)
+  {
+    $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , name ) VALUES ('"
+          .$Eco_Loss ."', '" 
+          .$year ."', '"
+          .$month ."', '"
+          .$day ."', '"
+          .$description . "', '"
+          .$location ."', '"
+          .$name . "')";
+    if(mysqli_query($this->conn,$sqlinc)){
+      $sqlID="SELECT MAX(id) FROM incident";
+      $id=mysqli_query($this->conn,$sqlID);//check if int is also= '6' or 6 direct
+       $sqlhuman="INSERT INTO human_made (id, causes) VALUES ("
+       .$sqlID . ", '"
+       .$causes ."')";
+       if(mysqli_query($this->conn,$sqlhuman))
+       {
+         echo "Incident Added Successfully";
+         return;
+       }
+       else{
+        echo "Error "."<br>". mysqli_error($this->conn);
+        return;
+       }
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+    }
+  }
+  public function InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$name,$Freq,$physical_parm)
+  {
+    $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , name ) VALUES ('"
+          .$Eco_Loss ."', '" 
+          .$year ."', '"
+          .$month ."', '"
+          .$day ."', '"
+          .$description . "', '"
+          .$location ."', '"
+          .$name . "')";
+    if(mysqli_query($this->conn,$sqlinc)){
+      $sqlID="SELECT MAX(id) FROM incident";
+      $id=mysqli_query($this->conn,$sqlID);//check if int is also= '6' or 6 direct
+       $sqlnatural="INSERT INTO natural_disaster (id, freq , physical_parameters) VALUES ('"
+       .$sqlID . "', '"
+       .$Freq . "', '"
+       .$physical_parm ."')";
+       if(mysqli_query($this->conn,$sqlnatural))
+       {
+         echo "Incident Added Successfully";
+         return;
+       }
+       else{
+        echo "Error "."<br>". mysqli_error($this->conn);
+        return;
+       }
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+    }
+  }
 
   function __destruct()
   {
-    parent::__destruct();
+    //parent::__destruct();
 
     mysqli_close($this->conn);
+    //wrong destruct i think 
   }
 }
