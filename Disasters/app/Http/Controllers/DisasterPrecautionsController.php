@@ -10,11 +10,18 @@ class DisasterPrecautionsController extends Controller
 {
   public function getPrecautions()
   {
-    $DisasterName = request('D_name');
+    $DisasterName = request('Di_name');
+
+    if(empty($DisasterName) || $DisasterName == "Disaster Name..")
+    {
+      echo "Enter a Disaster name to search for ";
+      return view('/info');
+    }
 
     $executor = new QueryExecutor();
-    $executor->DPrecautions($DisasterName);
+    $precaution =$executor->DPrecautions($DisasterName);
+    $precaution = mysqli_fetch_assoc($precaution);
 
-    return view('/info') ;    // to be changed
+        return view('/D_Precautions' , ['DPrecautions' =>  $precaution['precautions'] ]);
   }
 }

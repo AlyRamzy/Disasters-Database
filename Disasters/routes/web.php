@@ -45,6 +45,14 @@ Route::get('/info', function () {
     return view('info');
 });
 
+Route::get('/D_Causes', function () {
+    return view('/D_Causes');
+});
+
+Route::get('/D_Precautions', function () {
+    return view('/D_Precautions');
+});
+
 Route::get('/Admin', function () {
     return view('Admin');
 });
@@ -56,6 +64,23 @@ Route::get('/Remove_Users', function () {
 Route::get('/Add_Admin', function () {
     return view('Add_Admin');
 });
+
+Route::get('/Base_Admin', function () {
+    return view('Base_Admin');
+});
+
+Route::get('/ExistingUser', function () {
+    return view('ExistingUser');
+});
+
+Route::get('/Govn_Admin', function () {
+    return view('Govn_Admin');
+});
+
+Route::get('/citizen_Admin', function () {
+    return view('citizen_Admin');
+});
+
 
 Route::get('/Citizen', function () {
     return view('Citizen');
@@ -69,8 +94,17 @@ Route::get('/Asking', function () {
     return view('Asking');
 });
 
-Route::get('/', function () {
+Route::get('/Govn_Rep', function () {
     return view('Govn_Rep');
 });
 
+
 Route::post('/Add_Report', 'AddReportController@Add');
+
+Route::post('/info_cause', 'DisasterCausesController@getCauses');
+
+Route::post('/info_precautions', 'DisasterPrecautionsController@getPrecautions');
+
+Route::post('/citizen_Admin', 'AddAdminController@getCitizen');
+
+Route::post('/Govn_Admin', 'AddAdminController@getGovn');

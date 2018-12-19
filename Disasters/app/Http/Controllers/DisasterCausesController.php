@@ -11,10 +11,15 @@ class DisasterCausesController extends Controller
   public function getCauses()
   {
     $DisasterName = request('D_name');
-
+    if(empty($DisasterName) || $DisasterName == "Disaster Name..")
+    {
+      echo "Enter a Disaster name to search for ";
+      return view('/info');
+    }
     $executor = new QueryExecutor();
-    $executor->DCauses($DisasterName);
+    $cause =  $executor->DCauses($DisasterName);
+    $cause = mysqli_fetch_assoc($cause);
 
-    return view('/info') ;   //to be changed
+    return view('/D_Causes' , ['DCauses' =>  $cause['possible_causes'] ]);   //to be changed
   }
 }

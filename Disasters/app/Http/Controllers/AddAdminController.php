@@ -14,6 +14,12 @@ class AddAdminController extends Controller
     $username = request('username');
     $password = request('password');
     $gender = request('gender');
+    if ($gender = 'female')
+    {
+      $gender = 0;
+    } else {
+      $gender = 1;
+    }
     $address = request('address');
     $ssn = request('ssn');
     $age = request('age');
@@ -35,4 +41,49 @@ class AddAdminController extends Controller
 
     return view('/Add_Admin');   // to be changed
   }
+
+
+public function getCitizen()
+ {
+  $CitizenName = request('Cname');
+
+  $executor = new QueryExecutor();
+  $data =  $executor->Citizens($CitizenName);
+  $data = mysqli_fetch_assoc($data);
+
+  return view('/citizen_Admin' , ['SSNs' =>(array)$data['ssn'] , 'Names' =>(array)$data['name'] ]);
+}
+
+public function getGovn()
+{
+  $GName = request('Gname');
+
+  $executor = new QueryExecutor();
+  $data =  $executor->Govns($GName);
+  $data = mysqli_fetch_assoc($data);
+
+  return view('/Govn_Admin' , ['GSSNs' =>(array)$data['ssn'] , 'GNames' => (array)$data['name']  ]);   //to be changed
+}
+
+public function Gadmin()
+{
+  $Gssn = request('GovSSN');
+
+  $executor = new QueryExecutor();
+  $Assn = '00011111';
+  $executor->ExchangeGovn($Gssn , $Assn);     //need the cookie
+
+  return view('/Govn_Admin' );
+}
+
+public function Cadmin()
+{
+  $Cssn = request('CitizenSSN');
+  $Assn = '22222000';
+  $executor = new QueryExecutor();
+  $executor->ExchangeCitizen($Cssn , $Assn);     //need the cookie
+
+  return view('/citizen_Admin');
+}
+
 }
