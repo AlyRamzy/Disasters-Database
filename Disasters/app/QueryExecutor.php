@@ -54,6 +54,72 @@ class QueryExecutor extends Model
     }
   }
 
+  public function getCitizenCred($username)
+  {
+    $sql = "Select ssn, username, password From citizen Where username = '".$username."'";
+    if (mysqli_query($this->conn, $sql)) {
+        $data = mysqli_query($this->conn, $sql);
+        return ($data);
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+        return;
+    }
+  }
+
+  public function getGovRepCred($username)
+  {
+    $sql = "Select ssn, username, password From government_representative Where username = '".$username."'";
+    if (mysqli_query($this->conn, $sql)) {
+        $data = mysqli_query($this->conn, $sql);
+        return ($data);
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+        return;
+    }
+  }
+
+  public function getAdminCred($username)
+  {
+    $sql = "Select ssn, username, password From admin Where username = '".$username."'";
+    if (mysqli_query($this->conn, $sql)) {
+        $data = mysqli_query($this->conn, $sql);
+        return ($data);
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+        return;
+    }
+  }
+
+  public function getALLSSN()
+  {
+    $sql = "Select ssn From person";
+    if (mysqli_query($this->conn, $sql)) {
+        $data = mysqli_query($this->conn, $sql);
+        return ($data);
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+        return;
+    }
+  }
+
+  public function addCitizen($ssn, $name, $username, $password, $age, $address, $gender)
+  {
+    $sql1 = "Insert into person (ssn, name, age, gender, address) values ('".$ssn."', '".$name."', ".$age.", ".$gender.", ".$address.")";
+    $sql2 = "Insert into Citizen (ssn, username, password) values ('".$ssn."', '".$username."', '".$password."')";
+    if (mysqli_query($this->conn, $sql1)) {
+      if (mysqli_query($this->conn, $sql2))
+      {
+        echo "New record created successfully";
+      }
+      else
+      {
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($this->conn);
+      }
+    } else {
+        echo "Error: " . $sql1 . "<br>" . mysqli_error($this->conn);
+    }
+  }
+
   function __destruct()
   {
     mysqli_close($this->conn);

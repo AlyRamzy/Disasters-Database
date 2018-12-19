@@ -16,8 +16,9 @@ class AskingController extends Controller
     $inc_id = request('in_id');
 
     $all_ids = $executor->getIncID();
+    $all_ids = mysqli_fetch_assoc($all_ids);
 
-    if (in_array($inc_id, (array)$all_ids))
+    if (in_array($inc_id, (array)$all_ids['id']))
     {
       $executor->addDisc($inc_id, $question);
       return view('/Asking');
