@@ -220,4 +220,15 @@ class LoginController extends Controller
       return view('/Citizen');
     }
   }
+
+  public function LogOut()
+  {
+    setcookie("user", "", time() - 3600);
+    return view('/Login');
+  }
+
+  public function ChangePassword()
+  {
+    //To be Added
+  }
 }

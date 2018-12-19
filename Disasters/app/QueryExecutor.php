@@ -19,9 +19,9 @@ class QueryExecutor extends Model
     }
   }
 
-  public function addReport($description)
+  public function addReport($description, $ssn)
   {
-    $sql = "Insert into Report (content, citizen_ssn) values ('" . $description . "', '011111111')"; //User SSN s is to be taken from the cookie once log in is done
+    $sql = "Insert into Report (content, citizen_ssn) values ('" . $description . "', '".$ssn."')"; //User SSN s is to be taken from the cookie once log in is done
 
     if (mysqli_query($this->conn, $sql)) {
         echo "New record created successfully";
@@ -43,9 +43,9 @@ class QueryExecutor extends Model
     }
   }
 
-  public function addDisc($inc_id, $question)
+  public function addDisc($inc_id, $question, $ssn)
   {
-    $sql = "Insert into discussion (question, incident_id,  citizen_ssn) values ('".$question."', ".$inc_id.", '0312321312')"; //User SSN s is to be taken from the cookie once log in is done
+    $sql = "Insert into discussion (question, incident_id,  citizen_ssn) values ('".$question."', ".$inc_id.", '".$ssn."')"; //User SSN s is to be taken from the cookie once log in is done
 
     if (mysqli_query($this->conn, $sql)) {
         echo "New record created successfully";
