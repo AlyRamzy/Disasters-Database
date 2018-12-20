@@ -73,6 +73,12 @@ Route::get('/', function () {
     return view('Govn_Rep');
 });
 
+Route::get('/change_password', function () {
+    return view('change_password');
+});
+
+//--------------------------------------------------------------------------------------------------
+
 Route::post('/Add_Report', 'AddReportController@Add');
 
 Route::post('/Asking', 'AskingController@Add');
@@ -80,3 +86,5 @@ Route::post('/Asking', 'AskingController@Add');
 Route::post('/log_in', 'LoginController@ValnLog');
 
 Route::post('/sign_up', 'LoginController@SignUp');
+
+Route::post('/change_password', 'LoginController@ChangePassword');

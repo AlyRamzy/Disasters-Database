@@ -120,6 +120,58 @@ class QueryExecutor extends Model
     }
   }
 
+  public function getPassword($ssn)
+  {
+     $sql = "Select password From citizen Where ssn = '".$ssn."' Union Select password From admin Where ssn = '".$ssn.
+            "' Union Select password From government_representative Where ssn = '".$ssn."'";
+     if (mysqli_query($this->conn, $sql)) {
+         $data = mysqli_query($this->conn, $sql);
+         return ($data);
+     } else {
+         echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+         return;
+     }
+  }
+
+  public function updatePassword($ssn, $new_password)
+  {
+    $sql= "Select password From citizen Where ssn = '".$ssn."'";
+    if (mysqli_num_rows(mysqli_query($this->conn, $sql)) != 0)
+    {
+      $sql = "Update citizen Set password = '".$new_password."' Where ssn = '".$ssn."'";
+      if (mysqli_query($this->conn, $sql)) {
+          echo "Password Updated Successfully";
+      } else {
+          echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+      }
+    }
+    else
+    {
+      $sql= "Select password From government_representative Where ssn = '".$ssn."'";
+      if (mysqli_num_rows(mysqli_query($this->conn, $sql)) != 0)
+      {
+        $sql = "Update government_representative Set password = '".$new_password."' Where ssn = '".$ssn."'";
+        if (mysqli_query($this->conn, $sql)) {
+            echo "Password Updated Successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+        }
+    }
+    else
+    {
+      $sql= "Select password From admin Where ssn = '".$ssn."'";
+      if (mysqli_num_rows(mysqli_query($this->conn, $sql)) != 0)
+      {
+        $sql = "Update admin Set password = '".$new_password."' Where ssn = '".$ssn."'";
+        if (mysqli_query($this->conn, $sql)) {
+            echo "Password Updated Successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+        }
+        }
+      }
+    }
+    }
   function __destruct()
   {
     mysqli_close($this->conn);

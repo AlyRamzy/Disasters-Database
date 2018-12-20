@@ -388,3 +388,11 @@ INSERT INTO citizen
   INSERT INTO citizen
   (ssn, username , password , data_of_join) VALUES
   ('190586120' , 'johnny' , '14978104' , '2017-04-02' );
+
+  INSERT INTO Disasters
+  (name, possible_causes, precaustions, no_of_prev_occur) VALUES
+  ('Volcano', 'COre Melting', 'Surrounding Evacuation', 10)
+
+  INSERT INTO Incident
+  (eco_loss, year, month, day, description, location, name) VALUES
+  (1000000, 2018, 4, 12, 'Huge Eruption', 'Egypt', 'Volcano')

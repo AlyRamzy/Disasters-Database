@@ -229,6 +229,35 @@ class LoginController extends Controller
 
   public function ChangePassword()
   {
-    //To be Added
+    //Setting variables
+    if(!isset($_COOKIE['user'])) {
+        echo "Cookie named 'user' is not set!";
+    } else {
+        echo "Cookie 'user' is set!<br>";
+        $ssn = $_COOKIE['user'];
+    }
+    $old_password = request('password1');
+    $new_password1 = request('password2');
+    $new_password2 = request('password3');
+
+    //Validating the previous password and new password
+    $executor = new QueryExecutor();
+
+    $real_password = mysqli_fetch_assoc($executor->getPassword($ssn));
+    $real_password = $real_password['password'];
+    if ($old_password != $real_password)
+    {
+      echo "Incorrect Password";
+      return ('/change_password');
+    }
+    else if ($new_password1 != $new_password2)
+    {
+      echo "Passwords don't match";
+      return ('/change_password');
+    }
+
+    //Updating the password
+    $executor->updatePassword($ssn, $new_password1);
+    return view('/Login');
   }
 }
