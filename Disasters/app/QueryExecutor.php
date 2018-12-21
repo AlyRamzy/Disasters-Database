@@ -18,6 +18,56 @@ class QueryExecutor extends Model
         die("Connection failed: " . mysqli_connect_error());
     }
   }
+  public function GetAllGovInfo($ssn)
+  {
+    $sql="SELECT * FROM person p,government_representative g WHERE p.ssn=g.ssn AND p.ssn=  ".$ssn;
+    if(mysqli_query($this->conn,$sql)){
+      
+      $data= mysqli_query($this->conn,$sql);
+      return ($data);
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+
+    }
+
+  }
+  public function GetAllAdminInfo($ssn)
+  {
+    $sql="SELECT * FROM person p,admin d WHERE p.ssn=d.ssn AND p.ssn=  ".$ssn;
+    if(mysqli_query($this->conn,$sql)){
+      
+      $data= mysqli_query($this->conn,$sql);
+      return ($data);
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+
+    }
+
+  }
+  public function GetAllCitizenInfo($ssn)
+  {
+    $sql="SELECT * FROM person p,citizen c WHERE p.ssn=c.ssn AND p.ssn=  ".$ssn;
+    if(mysqli_query($this->conn,$sql)){
+      
+      $data= mysqli_query($this->conn,$sql);
+      return ($data);
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+
+    }
+
+  }
+
+
+
+
+
   public function GetAllUsers()
   {
     $sql="SELECT name,c.ssn FROM person p,citizen c WHERE p.ssn=c.ssn  ";
@@ -33,15 +83,32 @@ class QueryExecutor extends Model
     }
 
   }
-  public function RemoveUser($ssn)
+  public function RemoveUser($ssn,$Adminssn)
   {
     //$sql=" DELETE FROM person WHERE ssn= '" . $ssn. "'";
     $sql="DELETE FROM person WHERE ssn='".$ssn. "'";
     //return mysqli_query($this->conn,$sql);
     if(mysqli_query($this->conn,$sql)){
+      $sqlnum="SELECT no_banned_users FROM admin WHERE ssn='".$Adminssn."'";
+      $num=mysqli_query($this->conn,$sqlnum);
+      $num=mysqli_fetch_assoc($num);
+      $num=$num['no_banned_users'];
+      $num++;
+      $update="UPDATE admin SET no_banned_users =".$num." WHERE ssn='".$Adminssn."'";
+      if(mysqli_query($this->conn,$update))
+      {
+      
       
       echo "User Removed Successfully";
+      
       return;
+      }
+      else
+      {
+        echo "Error Deleting User"."<br>". mysqli_error($this->conn);
+      return;
+
+      }
     }
     else{
       echo "Error Deleting User"."<br>". mysqli_error($this->conn);

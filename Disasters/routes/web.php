@@ -57,6 +57,11 @@ Route::get('/Admin', function () {
     
   //  return view('Remove_Users');
 //});
+Route::get('/Profile_Govn_Rep','Profile@GovRep');
+Route::get('/Profile_Admin','Profile@Admin');
+Route::get('/Profile_Citizent','Profile@Citizent');
+
+
 Route::post('/Remove_Users','RemoveUser@Remove');
 Route::get('/Remove_Users','RemoveUser@MakeViewRemove');
 

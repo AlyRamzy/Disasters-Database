@@ -14,6 +14,8 @@
 <br>
 <h4><a href="Main">View Previous Events</a></h4>
 <br>
+<h4><a href="Profile_Citizent">Personal Info</a></h4>
+<br>
 
 <div class="input-group" style="margin-left:11px" >
  <input type="text" class="form-control" style="padding:20px" placeholder="Disaster Name..">

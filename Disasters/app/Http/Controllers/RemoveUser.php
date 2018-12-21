@@ -16,9 +16,11 @@ class RemoveUser extends Controller
             'user'=>'required'
             
         ]);
+       
         $SSN=request('user');
+        $AdminSSN=$_COOKIE['user'];
         $exec =new QueryExecutor();
-        $disasters=$exec->RemoveUser($SSN);
+        $disasters=$exec->RemoveUser($SSN,$AdminSSN);
          
         
         return $this->MakeViewRemove();
