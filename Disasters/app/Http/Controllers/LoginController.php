@@ -75,7 +75,7 @@ class LoginController extends Controller
       if (mysqli_num_rows($citInfo))
       {
         $citInfo = $this->proc_result($citInfo);
-        if ($password == $citInfo['password'][0])
+        if (password_verify($password, $citInfo['password'][0]))
         {
           $cookie_name = "user";
           $cookie_value = $citInfo['ssn'][0];
@@ -180,6 +180,7 @@ class LoginController extends Controller
       return view('/Login');
     } else {
       $passwordN = $this->test_input(request('passWord'));
+      $passwordN = password_hash($passwordN, PASSWORD_DEFAULT);
     }
 
     if (empty(request('ssn'))) {
@@ -275,7 +276,7 @@ class LoginController extends Controller
 
     $real_password = $this->proc_result($executor->getPassword($ssn));
     $real_password = $real_password['password'][0];
-    if ($old_password != $real_password)
+    if (password_verify($old_password, $real_password))
     {
       echo "Incorrect Password";
       return ('/change_password');
@@ -287,6 +288,7 @@ class LoginController extends Controller
     }
 
     //Updating the password
+    $new_password1 = password_hash($new_password1, PASSWORD_DEFAULT);
     $executor->updatePassword($ssn, $new_password1);
     setcookie("user", "", time() - 3600);
     setcookie("type", "", time() - 3600);

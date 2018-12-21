@@ -204,83 +204,83 @@ INSERT INTO Person
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('21510971420378' , 'Ali' , 'AliKhaled', '2016-11-10');
+('21510971420378' , 'Ali' , '$2y$10$GlXpr3zka3xBmSARLtMKqesNXVzonR80SZ14pMRqRFWF2v9PtH84G', '2016-11-10');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('20612981004127' , 'Aly' , 'AlyRamzy', '2016-11-17');
+('20612981004127' , 'Aly' , '$2y$10$vhp58d4ZDRVWixFkknlMDeOHisx59ctMnvxQfn7Wy0Vt4uOD1wYCm', '2016-11-17');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('21506981045017' , 'Monda' , 'remonda21', '2017-06-04');
+('21506981045017' , 'Monda' , '$2y$10$KrJY10KnGarnmGPiVDpWW.GZgvUUaVo/75VFHPyBrGwsP6G8T1wEq', '2017-06-04');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('21702984560102' , 'Shawky' , 'DarkGeek', '2014-12-12');
+('21702984560102' , 'Shawky' , '$2y$10$9SpIsQEv2ysWAYYtk8IY3.iJ7myywqO9T62rGZSbmfQQWBSkfBUXK', '2014-12-12');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('130906217' , 'Sam' , 'mo1560#', '2017-06-18');
+('130906217' , 'Sam' , '$2y$10$3cFZwCzUJYWz0qIw77JPHeBOFUlDELBF/xIQqAcwNSk1Wubn.yPsq', '2017-06-18');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('530531812' , 'Lesley' , 'to239613', '2017-04-11');
+('530531812' , 'Lesley' , '$2y$10$hhZhGPwzhG0JFUhlpdTbI.4xLEczPX78XkjgtYG6Rz9zfXB.SZTOu', '2017-04-11');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('445062282' , 'Andrew' , '06121998', '2016-06-14');
+('445062282' , 'Andrew' , '$2y$10$/ikHrMup9zLG3InuJbhdHO1yL4we9dgnkB/jKkw7LWv.O1x9/E85e', '2016-06-14');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('537192804' , 'Elsa' , '1721998', '2017-02-22');
+('537192804' , 'Elsa' , '$2y$10$qxiE1hyTlDYVeaSz8Lkzse.VNH6HUKCccwiKCXZ4GHhQFpaslCsuK', '2017-02-22');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('368246284' , 'Mera' , '1561998', '2015-01-06');
+('368246284' , 'Mera' , '$2y$10$JMyDwC0vWLQxgNOg7DwD8.4d1otidMe4yZj7nKfNHE099s39l6Yau', '2015-01-06');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('416242359' , 'viorena' , 'swqmkhaw', '2016-12-21');
+('416242359' , 'viorena' , '$2y$10$H/WfYx/cvrZQIBpFMZleMOzwZwOOUr55bjS1NfJG65O8bUWlgYtma', '2016-12-21');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('520165865' , 'Hand' , '1548#ha', '2015-11-29');
+('520165865' , 'Hand' , '$2y$10$.rdkuG6NiT.cOA5YaJq07epWYNh0ZjmwQjCmgQpgJTy9hP6c3EJZ6', '2015-11-29');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('226571874' , 'Kertzmann' , '23081999', '2016-07-14');
+('226571874' , 'Kertzmann' , '$2y$10$wKgpO6n5oLlybf3uyY1XWeh6cJKx2Zz7V.ey1pRE8iDrL9EtAOnsa', '2016-07-14');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('21107885102472' , 'Mohamed' , '4411qwx', '2015-10-11');
+('21107885102472' , 'Mohamed' , '$2y$10$QY4RMiPhzjjz.kxREgNYZOnzOrvCXxiGIjQzZ5lkE9r.0HM2AdtBi', '2015-10-11');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('29106103540131' , 'Mona' , 'soma15697', '2017-09-19');
+('29106103540131' , 'Mona' , '$2y$10$PjMsSn01WLO82XyaUUKdC.2bPS1Dmia4nAviEyU7FQjvXjhMd0rhO', '2017-09-19');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('29806152014921' , 'Ahmed' , '156@Dat', '2017-02-01');
+('29806152014921' , 'Ahmed' , '$2y$10$u8J3YMce/0iaZ4x/Yefoe.wmvhwS9cRf2uBLYqxyt27PsSFAX3t6W', '2017-02-01');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('651182266' , 'Predovic' , '1487987', '2015-12-10');
+('651182266' , 'Predovic' , '$2y$10$MdlYYb6FiD4N43r9wEGI2u/t3M1NIo46gEPI/bvnsx8DV09KRwP6C', '2015-12-10');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('036389826' , 'Uptoc' , 'mhassan123', '2017-01-21');
+('036389826' , 'Uptoc' , '$2y$10$J2I/2byxFlPTyxwKavy2/.GDQMHhjo5Kx8nFCXIe.PmYBhf2/LIDq', '2017-01-21');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('470096792' , 'Nour' , 'ko243891', '2015-02-03');
+('470096792' , 'Nour' , '$2y$10$veIiE7tropyPIoREPy/9SeBSdL4LqTTiyUuja6TtC4c2s5SM65e/u', '2015-02-03');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('309175316' , 'Mok' , 'hassan21', '2015-12-02');
+('309175316' , 'Mok' , '$2y$10$H.CPdWvmrHilpn3p3Un/aOXocHnqejjf7MviS63uJYiRdT/Z5u0iy', '2015-12-02');
 
 INSERT INTO Government_Representative
 (ssn, username, password, data_of_join) VALUES
-('552837008' , 'Assem' , '14719954#', '2017-10-02');
+('552837008' , 'Assem' , '$2y$10$882DF92DztO3GgdWtqcuxOn8cDQDEjoKBzmmL3vpwUNJ.A/8qplkW', '2017-10-02');
 
 INSERT INTO Criminal
 (ssn, no_of_crimes, current_state, no_of_victims) VALUES
@@ -324,59 +324,59 @@ INSERT INTO Criminal
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('252146915' ,'Nova' , '541701q' , 1 , 0 );
+('252146915' ,'Nova' , '$2y$10$q2CRdtd6RdQKNHQYUFNJpuYTe80XKtvI.wsob6pgViqunhS4ge8ta' , 1 , 0 );
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('28801150247137' ,'karim' , 'm1569#' , 2 , 0 );
+('28801150247137' ,'karim' , '$2y$10$NBr5suKtjKTf06jLexaTX.7UGGtY2PqqFExu/AndzXI8XDXr5P0zq' , 2 , 0 );
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('642606916' ,'Karmin' , '8912321#' , 0 , 0 );
+('642606916' ,'Karmin' , '$2y$10$3F1O/dpTpVUb62X9Xixl7.MQD2thbztBtLvo6HMVo2SataKrWdB4.' , 0 , 0 );
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('505230161' ,'Veronica' , '15040w' , 3 , 1 );
+('505230161' ,'Veronica' , '$2y$10$Xm4RJOeNkY9ozCc7xu8ffu5unwQm8peeCwNXn.6mjc73baXwOHSr.' , 3 , 1 );
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('518242856' ,'Jessica' , 'hq367132' , 0 , 1 );
+('518242856' ,'Jessica' , '$2y$10$ES6Fwe.F6L4rrNEWhm9R4.p6p2hURX0bObTAfgOJ7gGwVRL0rVhxa' , 0 , 1 );
 
 INSERT INTO citizen
 (ssn, username , password , data_of_join) VALUES
-('477342755' , 'Kalvin' , 'kevy712' , '2017-01-12' );
+('477342755' , 'Kalvin' , '$2y$10$uX.YyVgV2IjWo18YQa077eFUddB7xojY51B0ZN7GOlGMToSsmpquu' , '2017-01-12' );
 
 INSERT INTO citizen
 (ssn, username , password , data_of_join) VALUES
-('574512726' , 'Jesson' , 'jackson4' , '2017-07-12' );
+('574512726' , 'Jesson' , '$2y$10$c3HLpG6M75J/ahvyHwCde.llcJDOyUxDJVT66KCNohicYdBRtHiDm' , '2017-07-12' );
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('29802171204031' ,'MohamedDG' , 'DarkGeek' , 0 , 1 );
+('29802171204031' ,'MohamedDG' , '$2y$10$FrpRq0OZJSe32ycDLNYFEes7KWDKKFiB09E/2MRHGot.dwR/Vn.9.' , 0 , 1 );
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('29806151104203' ,'Remonda' , 'monda21' , 0 , 2 );
+('29806151104203' ,'Remonda' , '$2y$10$uew6cSd.XxPL7VMNL/pf/OoZ7Y1WFrQDm0uBfzPRbz./97Xvq/ade' , 0 , 2 );
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('29812061046204' ,'Aly' , 'Hassan6' , 1 , 3 );
+('29812061046204' ,'Aly' , '$2y$10$3h2djvc4RXl/LLrFognaC.o1dkurSNG/3JmExsP4E2yPgxuFS..HS' , 1 , 3 );
 
 INSERT INTO Admin
 (ssn, username, password , no_banned_users , no_added_admins) VALUES
-('29708151024153' ,'Ali' , 'AliKhaled' , 0 , 1 );
+('29708151024153' ,'Ali' , '$2y$10$Oa0Y1WBN7X3FdoyWJ2mJO.LAR98WHYe045BboXz1H0.NuV1NwCwpi' , 0 , 1 );
 
 INSERT INTO citizen
 (ssn, username , password , data_of_join) VALUES
-('505230261' , 'Micheal' , 'mo3471#&' , '2018-01-10' ) ;
+('505230261' , 'Micheal' , '$2y$10$3MQUMuVns0/N8zvJeyQLzuPbLXB4v/5i1TJ9MU7GKfWWT/aYSbXUG' , '2018-01-10' ) ;
 
 INSERT INTO citizen
 (ssn, username , password , data_of_join) VALUES
-('29802171244231' , 'Moamen' , 'Mo21201*' , '2018-03-10' );
+('29802171244231' , 'Moamen' , '$2y$10$CTWZYwrJzRrnZwrUy2FypO461BhAv2xaO0wiBrsSdyeuHuCEpLxZO' , '2018-03-10' );
 
 INSERT INTO citizen
 (ssn, username , password , data_of_join) VALUES
-('190586120' , 'johnny' , '14978104' , '2017-04-02' );
+('190586120' , 'johnny' , '$2y$10$NP2aRTqEnj/ZmDWZTSdM1OvKicQC691D78ipMtc2IFp83rLbaJeC6' , '2017-04-02' );
 
 INSERT INTO Disaster
 (name, possible_causes, precautions, no_of_prev_occur) VALUES
