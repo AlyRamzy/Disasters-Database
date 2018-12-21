@@ -275,6 +275,7 @@ class LoginController extends Controller
 
     //Updating the password
     $executor->updatePassword($ssn, $new_password1);
+    setcookie("user", "", time() - 3600);
     return view('/Login');
   }
 }
