@@ -15,7 +15,7 @@
     }
 
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 1000px}
+    .row.content {height: 1212px}
 
     /* Set gray background color and 100% height */
     .sidenav {
@@ -38,7 +38,7 @@
 </head>
 </html>
 <body>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse" >
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -54,7 +54,7 @@
       </div>
     </div>
   </nav>
-  <div class="container-fluid text-center">
+  <div class="container-fluid text-center" @yield('img') >
     <div class="row content">
       <div class="col-sm-2 sidenav">
   @yield('content')

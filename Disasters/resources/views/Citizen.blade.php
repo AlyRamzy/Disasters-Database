@@ -30,8 +30,7 @@
 
 
 </div>
-<div class="col-sm-2 sidenav">
-</div>
+
 
 
 @endsection

@@ -22,9 +22,7 @@
     @yield('content1')
 
     </div>
-    <div class="col-sm-2 sidenav">
-
-      </div>
+    
     </div>
 
 
