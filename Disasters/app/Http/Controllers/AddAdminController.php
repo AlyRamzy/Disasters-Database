@@ -185,17 +185,18 @@ public function Gadmin()
   if (empty($Gssn))
   {
     echo " No Government Representative exists ! ";
-    return view('/Base_Admin' );
+    return $this->getData();
+
   }
   $executor = new QueryExecutor();
 
   if(!isset($_COOKIE['user'])){
     echo "Cookie named user doesn't set !";
-    return view('/Base_Admin');
+    return $this->getData();
   } else {
     $Assn = $_COOKIE['user'];
   $executor->ExchangeGovn($Gssn , $Assn);
-  return view('/Base_Admin' );
+  return $this->getData();
 }
 }
 
@@ -207,16 +208,17 @@ public function Cadmin()
   if (empty($Cssn))
   {
     echo " No citizens exists ! ";
-    return view('/Base_Admin' );
+    return $this->getData();
+
   }
   $executor = new QueryExecutor();
   if(!isset($_COOKIE['user'])){
     echo "Cookie named user doesn't set !";
-    return view('/Base_Admin');
+    return $this->getData();
   } else {
     $Assn = $_COOKIE['user'];
   $executor->ExchangeCitizen($Cssn , $Assn);
-  return view('/Base_Admin' );
+  return $this->getData();
 }
 }
 

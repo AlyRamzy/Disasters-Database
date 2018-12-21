@@ -81,15 +81,6 @@ Route::get('/ExistingUser', function () {
     return view('ExistingUser');
 });
 
-Route::get('/Govn_Admin', function () {
-    return view('Govn_Admin');
-});
-
-Route::get('/citizen_Admin', function () {
-    return view('citizen_Admin');
-});
-
-
 Route::get('/Citizen', function () {
     return view('Citizen');
 });
