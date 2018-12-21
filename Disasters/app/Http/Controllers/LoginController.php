@@ -51,7 +51,7 @@ class LoginController extends Controller
         return view('/Login');
       } else {
         $username = $this->test_input(request('username'));
-        if (!preg_match("/^[a-zA-Z ]*$/",$username)) {
+        if (!preg_match("/[A-Za-z0-9]+/",$username)) {
           $usernameErr = "Only letters and white space allowed";
           echo $usernameErr;
           return view('/Login');
@@ -80,6 +80,9 @@ class LoginController extends Controller
           $cookie_name = "user";
           $cookie_value = $citInfo['ssn'][0];
           setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
+          $cookie_name = "type";
+          $cookie_value = "citizen";
+          setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
           return view('/Citizen');
         }
         else
@@ -100,6 +103,9 @@ class LoginController extends Controller
           $cookie_name = "user";
           $cookie_value = $govInfo['ssn'][0];
           setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
+          $cookie_name = "type";
+          $cookie_value = "gov_rep";
+          setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
           return view('/Govn_Rep');
         }
         else
@@ -119,6 +125,9 @@ class LoginController extends Controller
         {
           $cookie_name = "user";
           $cookie_value = $adminInfo['ssn'][0];
+          setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
+          $cookie_name = "type";
+          $cookie_value = "admin";
           setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
           return view('/Admin');
         }
@@ -196,7 +205,7 @@ class LoginController extends Controller
       $address = 'null';
     } else {
       $address = "'".$this->test_input(request('address'))."'";
-      if (!preg_match("/[A-Za-z0-9]+/",$address)) {
+      if (!preg_match("/^[a-zA-Z]+\ +[0-9]+$/",$address)) {
         $addressErr = "Only letters, numbers and white space allowed";
         echo $addressErr;
         return view('\Login');
@@ -234,6 +243,9 @@ class LoginController extends Controller
       $cookie_name = "user";
       $cookie_value = $ssnN;
       setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
+      $cookie_name = "type";
+      $cookie_value = "citizen";
+      setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
       return view('/Citizen');
     }
   }
@@ -241,6 +253,7 @@ class LoginController extends Controller
   public function LogOut()
   {
     setcookie("user", "", time() - 3600);
+    setcookie("type", "", time() - 3600);
     return view('/Login');
   }
 
@@ -276,6 +289,7 @@ class LoginController extends Controller
     //Updating the password
     $executor->updatePassword($ssn, $new_password1);
     setcookie("user", "", time() - 3600);
+    setcookie("type", "", time() - 3600);
     return view('/Login');
   }
 }

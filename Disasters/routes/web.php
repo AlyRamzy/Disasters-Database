@@ -88,3 +88,9 @@ Route::post('/log_in', 'LoginController@ValnLog');
 Route::post('/sign_up', 'LoginController@SignUp');
 
 Route::post('/change_password', 'LoginController@ChangePassword');
+
+Route::post('/logout', 'LoginController@LogOut');
+
+Route::post('/profile', 'BasicController@ViewProf');
+
+Route::post('/main_menu', 'BasicController@MMenuRet');

@@ -45,11 +45,23 @@
         </button>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Main Menu</a></li>
+        <ul class="nav navbar-nav navbar-right" style="margin-right:12px">
+          <form action="/logout" method="post">
+            {{ csrf_field() }}
+            <button type="submit" name="logout" value="logout" class="btn-link" style="margin-top:12px"><span class="glyphicon glyphicon-log-out"></span> LogOut</button>
+          </form>
         </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right:24px">
-          <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+          <form action="/profile" method="post">
+            {{ csrf_field() }}
+            <button type="submit" name="profile" value="profile" class="btn-link" style="margin-top:12px"><span class="glyphicon glyphicon-user"></span> View Profile</button>
+          </form>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="margin-right:12px">
+          <form action="/main_menu" method="post">
+            {{ csrf_field() }}
+            <button type="submit" name="mmenu" value="mmenu" class="btn-link" style="margin-top:12px"><span class="glyphicon glyphicon-menu-hamburger"></span> Main Menu</button>
+          </form>
         </ul>
       </div>
     </div>
