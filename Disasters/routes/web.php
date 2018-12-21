@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function () {
+    return view('Login');
+});
+
 Route::get('/Cas_Crim_Base', function () {
     return view('Cas_Crim_Base');
 });
@@ -69,7 +73,7 @@ Route::get('/Asking', function () {
     return view('Asking');
 });
 
-Route::get('/', function () {
+Route::get('/Govn_Rep', function () {
     return view('Govn_Rep');
 });
 
