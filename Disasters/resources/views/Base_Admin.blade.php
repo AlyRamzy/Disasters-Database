@@ -4,9 +4,17 @@
 
 <br>
 <br>
-<h3><a href="Add_Admin">Add New Admin</a></h3>
+<a href="Add_Admin"><button type="button" class="btn btn-primary btn-lg" style = "margin-bottom:15px">Add New Admin</button></a>
+
 <br>
-<h3><a href="ExistingUser">Make Existing User Admin </a></h3>
+
+<form method="post" action="/ExistingUser">
+{{ csrf_field() }}
+
+<button type="submit" class="btn btn-primary btn-lg"> add existing user </button>
+
+</form>
+
 <br>
 
 

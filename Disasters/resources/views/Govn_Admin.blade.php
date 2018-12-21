@@ -7,7 +7,7 @@
 <br>
 <br>
 
-<table class="table table-hover" >
+<table class="table table-bordered" >
   <thead>
     <tr>
       <th scope="col">SSN</th>

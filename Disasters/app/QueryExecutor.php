@@ -26,33 +26,20 @@ class QueryExecutor extends Model
     $sql = "Insert into Report (content, citizen_ssn) values ('" . $description . "', '011111111')"; //User SSN s is to be taken from the cookie once log in is done
 
     if (mysqli_query($this->conn, $sql)) {
+
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
     }
   }
 
-//-----------------------------------------------------------------
-
-  public function AddCasuality($name , $ssn , $address , $age , $gender , $degOfLosses , $incident)
-  {
-
-    $sql = "";
-
-    if (mysqli_query($this->conn, $sql)) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
-    }
-
-  }
 
 //-----------------------------------------------------------------
 
 public function Citizens()
 {
 
-  $sql = "select person.ssn , person.name from citizen , person where citizen.ssn = person.ssn ";
+  $sql = "select person.ssn , person.name from citizen , person where citizen.ssn = person.ssn; ";
 
   if (mysqli_query($this->conn, $sql)) {
 
@@ -71,13 +58,14 @@ public function Citizens()
 public function Govns()
 {
 
-  $sql = "select person.ssn , person.name from government_representative , person where government_representative.ssn = person.ssn ";
+  $sql = "select person.ssn , person.name from government_representative , person where government_representative.ssn = person.ssn ;";
 
   if (mysqli_query($this->conn, $sql)) {
 
       $data = mysqli_query($this->conn , $sql);
       echo "Data retrived successfully";
       return ($data);
+
   } else {
       echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
       return;
@@ -85,11 +73,9 @@ public function Govns()
 
 }
 
-//--------------------------------------------------------------
-
 //-------------------------------------------------------------------------
 
-public function ExchangeCitizen( $ssn )
+public function ExchangeCitizen( $ssn , $ssnA )
 {
 
 $sql = "select username , password from citizen where ssn =  '" . $ssn . "' ;";
@@ -103,6 +89,8 @@ if (mysqli_query($this->conn, $sql)) {
     $password = $data['password'];
 
     echo "Data retrived successfully";
+    echo $username;
+    echo $password;
 
     $sql = "Delete from citizen where ssn = '" . $ssn . "' ;";
 
@@ -189,7 +177,7 @@ if (mysqli_query($this->conn, $sql)) {
 
 //------------------------------------------------------------------------
 
-  public function newAdmin($name , $username , $password , $gender , $address , $ssn , $age)
+  public function newAdmin($name , $username , $password , $gender , $address , $ssn , $age , $Assn)
   {
 
     $sql1 = "Insert into person (ssn, name , gender , address) values ('" . $ssn . "', '" . $name . "', " . $gender . ", '" . $address . "' )";
@@ -198,13 +186,21 @@ if (mysqli_query($this->conn, $sql)) {
 
       if (mysqli_query($this->conn, $sql2)) {
                 echo "New record created successfully";
+                $sql = " update admin SET no_added_admins = no_added_admins + 1 where ssn = '" . $Assn . "' ;";
+
+                if(mysqli_query($this ->conn, $sql))
+                {
+                    echo "data selected successfully";
+                    return;
+                  } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                               return;}
 
       } else {
-              echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+              echo "Error: " . $sql2 . "<br>" . mysqli_error($this->conn);
 
     }
           } else {
-              echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+              echo "Error: " . $sql1 . "<br>" . mysqli_error($this->conn);
 
           }
   }
@@ -271,20 +267,25 @@ public function getALLSSN()
     }
   }
 
-//----------------------------------- to be modified ---------------------------------------------------
+//---------------------------------------------------------------------------
 
-  public function Casualties( $name )     //to be modified
+  public function Casualties( $name )
   {
-    $sql1 = "select ssn from person where name = '" . $name . "'";
-    $tsql = "select ssn from casaulty where ssn in (" . $sql1 . ")";
-    $sql2 = "select deg_of_loss from casaulty where ssn in (" . $tsql . ")";
-    $sql3 = "select incident_id from casualty_incident where casualty_ssn in (" . $tsql . ")";
+    $sql = "select deg_of_loss , incident.name , location ,  description , year , month , day
+    from person, casualty, incident , casualty_incident
+    where  id = incident_id and person.ssn = casualty.ssn and casualty.ssn = casualty_ssn and person.name = '" . $name . "';" ;
 
     if (mysqli_query($this->conn, $sql)) {
 
-        echo "Data retrived successfully";
         $data = mysqli_query($this->conn, $sql);
-        return ($data);
+
+        if(mysqli_num_rows($data) !=0)
+        {
+            echo "data retreived successfully";
+            return ($data);
+        }
+          echo "Casualty Name Doesn't exist ";
+          return ($data);
 
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
@@ -302,9 +303,14 @@ public function getALLSSN()
 
     if (mysqli_query($this->conn, $sql)) {
 
-        echo "Data retrived successfully";
         $data = mysqli_query($this->conn, $sql);
-        return ($data);
+        if(mysqli_num_rows($data) !=0)
+        {
+            echo "data retreived successfully";
+            return ($data);
+        }
+          echo "No Incident in this Date :) ";
+          return ($data);
 
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
@@ -320,9 +326,14 @@ public function getALLSSN()
 
     if (mysqli_query($this->conn, $sql)) {
 
-        echo "Data retrived successfully";
         $data = mysqli_query($this->conn, $sql);
-        return ($data);
+        if(mysqli_num_rows($data) !=0)
+        {
+            echo "data retreived successfully";
+            return ($data);
+        }
+          echo "No Incident in this Date :) ";
+          return ($data);
 
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
@@ -339,8 +350,13 @@ public function getALLSSN()
 
     if (mysqli_query($this->conn, $sql)) {
 
-        echo "Data retrived successfully";
-        $data = mysqli_query($this->conn, $sql);
+      $data = mysqli_query($this->conn, $sql);
+      if(mysqli_num_rows($data) !=0)
+      {
+          echo "data retreived successfully";
+          return ($data);
+      }
+        echo "No Incident in this Date :) ";
         return ($data);
 
     } else {
@@ -358,8 +374,13 @@ public function getALLSSN()
 
     if (mysqli_query($this->conn, $sql)) {
 
-        echo "Data retrived successfully";
-        $data = mysqli_query($this->conn, $sql);
+      $data = mysqli_query($this->conn, $sql);
+      if(mysqli_num_rows($data) !=0)
+      {
+          echo "data retreived successfully";
+          return ($data);
+      }
+        echo "No Incident in this Date :) ";
         return ($data);
 
     } else {
@@ -377,8 +398,13 @@ public function getALLSSN()
 
     if (mysqli_query($this->conn, $sql)) {
 
-        echo "Data retrived successfully";
-        $data = mysqli_query($this->conn, $sql);
+      $data = mysqli_query($this->conn, $sql);
+      if(mysqli_num_rows($data) !=0)
+      {
+          echo "data retreived successfully";
+          return ($data);
+      }
+        echo "No Incident in this Date :) ";
         return ($data);
 
     } else {
@@ -391,13 +417,18 @@ public function getALLSSN()
 
   public function Dyear( $year , $day )
   {
-        $sql = "select * from incident where year = '" . $year . "' , day = '" . $day . "';";
+    $sql = "select * from incident where year = '" . $year . "' , day = '" . $day . "';";
 
 
     if (mysqli_query($this->conn, $sql)) {
 
-        echo "Data retrived successfully";
-        $data = mysqli_query($this->conn, $sql);
+      $data = mysqli_query($this->conn, $sql);
+      if(mysqli_num_rows($data) !=0)
+      {
+          echo "data retreived successfully";
+          return ($data);
+      }
+        echo "No Incident in this Date :) ";
         return ($data);
 
     } else {
@@ -408,15 +439,20 @@ public function getALLSSN()
 
 //-----------------------------------------------------------------
 
-  public function Myear( $year , $month )     //to be modified
+  public function Myear( $year , $month )
   {
     $sql = "select * from incident where year = '" . $year . "' , month = '" . $month . "';";
 
 
     if (mysqli_query($this->conn, $sql)) {
 
-        echo "Data retrived successfully";
-        $data = mysqli_query($this->conn, $sql);
+      $data = mysqli_query($this->conn, $sql);
+      if(mysqli_num_rows($data) !=0)
+      {
+          echo "data retreived successfully";
+          return ($data);
+      }
+        echo "No Incident in this Date :) ";
         return ($data);
 
     } else {

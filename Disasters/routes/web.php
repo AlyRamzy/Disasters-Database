@@ -41,6 +41,14 @@ Route::get('/Disaster_View', function () {
     return view('Disaster_View');
 });
 
+Route::get('/View_Casaulty', function () {
+    return view('View_Casaulty');
+});
+
+Route::get('/DView', function () {
+    return view('/DView');
+});
+
 Route::get('/info', function () {
     return view('info');
 });
@@ -105,6 +113,14 @@ Route::post('/info_cause', 'DisasterCausesController@getCauses');
 
 Route::post('/info_precautions', 'DisasterPrecautionsController@getPrecautions');
 
-Route::post('/citizen_Admin', 'AddAdminController@getCitizen');
+Route::post('/ExistingUser', 'AddAdminController@getData');
 
-Route::post('/Govn_Admin', 'AddAdminController@getGovn');
+Route::post('/citizen_Admin', 'AddAdminController@Cadmin');
+
+Route::post('/Govn_Admin', 'AddAdminController@Gadmin');
+
+Route::post('/Add_Admin', 'AddAdminController@addNew');
+
+Route::post('/View_Casaulty', 'VinewCasaultyController@VCasaulty');
+
+Route::post('/Disaster_View', 'IncidentController@VIncident');
