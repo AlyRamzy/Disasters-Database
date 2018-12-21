@@ -17,6 +17,28 @@ class LoginController extends Controller
       return $data;
     }
 
+    private function proc_result($data)
+    {
+      $fields = mysqli_fetch_fields($data);
+      $data_arr = array();
+
+      foreach ($fields as $value)
+      {
+        $data_arr[$value->name] = [];
+      }
+
+      while ($row = mysqli_fetch_assoc($data))
+      {
+        foreach ($data_arr as $key => $value)
+        {
+          $next = $row[$key];
+          array_push($value, $next);
+          $data_arr[$key] = $value;
+        }
+      }
+      return $data_arr;
+    }
+
     public function ValnLog()
     {
       //Validate the input data
@@ -52,11 +74,11 @@ class LoginController extends Controller
 
       if (mysqli_num_rows($citInfo))
       {
-        $citInfo = mysqli_fetch_assoc($citInfo);
-        if ($password == $citInfo['password'])
+        $citInfo = $this->proc_result($citInfo);
+        if ($password == $citInfo['password'][0])
         {
           $cookie_name = "user";
-          $cookie_value = $citInfo['ssn'];
+          $cookie_value = $citInfo['ssn'][0];
           setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
           return view('/Citizen');
         }
@@ -72,11 +94,11 @@ class LoginController extends Controller
 
       if (mysqli_num_rows($govInfo))
       {
-        $govInfo = mysqli_fetch_assoc($govInfo);
-        if ($password == $govInfo['password'])
+        $govInfo = $this->proc_result($govInfo);
+        if ($password == $govInfo['password'][0])
         {
           $cookie_name = "user";
-          $cookie_value = $govInfo['ssn'];
+          $cookie_value = $govInfo['ssn'][0];
           setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
           return view('/Govn_Rep');
         }
@@ -92,11 +114,11 @@ class LoginController extends Controller
 
       if (mysqli_num_rows($adminInfo))
       {
-        $adminInfo = mysqli_fetch_assoc($adminInfo);
-        if ($password == $adminInfo['password'])
+        $adminInfo = $this->proc_result($adminInfo);
+        if ($password == $adminInfo['password'][0])
         {
           $cookie_name = "user";
-          $cookie_value = $adminInfo['ssn'];
+          $cookie_value = $adminInfo['ssn'][0];
           setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); //Available for approximately one day
           return view('/Admin');
         }
@@ -136,8 +158,8 @@ class LoginController extends Controller
       return view('/Login');
     } else {
       $usernameN = $this->test_input(request('username'));
-      if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-        $usernameErrN = "Only letters and white space allowed";
+      if (!preg_match("/[A-Za-z0-9]+/",$usernameN)) {
+        $usernameErrN = "Only letters, numbers and white space allowed";
         echo $usernameErrN;
         return view('/Login');
       }
@@ -168,19 +190,14 @@ class LoginController extends Controller
       $age = 'null';
     } else {
       $age = $this->test_input(request('age'));
-      if (!preg_match("/^[- ]*$/",$age)) {
-        $ageErr = "Only Numbers and white space allowed";
-        echo $ageErr;
-        return view('\Login');
-      }
     }
 
     if (empty(request('address'))) {
       $address = 'null';
     } else {
-      $address = $this->test_input(request('address'));
-      if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-        $addressErr = "Only letters and white space allowed";
+      $address = "'".$this->test_input(request('address'))."'";
+      if (!preg_match("/[A-Za-z0-9]+/",$address)) {
+        $addressErr = "Only letters, numbers and white space allowed";
         echo $addressErr;
         return view('\Login');
     }
@@ -204,7 +221,7 @@ class LoginController extends Controller
     $executor = new QueryExecutor();
 
     $all_ssns = $executor->getALLSSN();
-    $all_ssns = mysqli_fetch_assoc($all_ssns);
+    $all_ssns = $this->proc_result($all_ssns);
 
     if (in_array($ssnN, (array)$all_ssns['ssn']))
     {
@@ -243,8 +260,8 @@ class LoginController extends Controller
     //Validating the previous password and new password
     $executor = new QueryExecutor();
 
-    $real_password = mysqli_fetch_assoc($executor->getPassword($ssn));
-    $real_password = $real_password['password'];
+    $real_password = $this->proc_result($executor->getPassword($ssn));
+    $real_password = $real_password['password'][0];
     if ($old_password != $real_password)
     {
       echo "Incorrect Password";
