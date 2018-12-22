@@ -8,15 +8,15 @@
       <br>
       <h4><a href="Main">View Previous Events</a></h4>
       <br>
+      <h4><a href="Profile_Admin">Personal Info</a></h4>
+      <br>
     </div>
     <div class="col-sm-8 text-left">
 
     @yield('content1')
 
     </div>
-    <div class="col-sm-2 sidenav">
-
-      </div>
+    
     </div>
 
 
