@@ -377,21 +377,6 @@ if (mysqli_query($this->conn, $sql)) {
 
 //----------------------------------------------------------------------
 
-public function getALLSSN()
-{
-  $sql = "select ssn from person;";
-  if(mysqli_query($this->conn, $sql))
-  {
-    $data = mysqli_query($this->conn, $sql);
-    return ($data);
-  } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
-  }
-}
-
-
-//----------------------------------------------------------------------
-
   public function DCauses($name )
   {
     $sql = "select possible_causes from disaster where name = '" . $name . "'";
