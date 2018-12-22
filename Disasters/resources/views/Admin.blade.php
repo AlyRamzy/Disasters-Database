@@ -4,7 +4,7 @@
        <br>
       <h4><a href="Remove_Users">Remove Person</a></h4>
       <br>
-      <h4><a href="Add_Admin">Add Admin</a></h4>
+      <h4><a href="Base_Admin">Add Admin</a></h4>
       <br>
       <h4><a href="Main">View Previous Events</a></h4>
       <br>
