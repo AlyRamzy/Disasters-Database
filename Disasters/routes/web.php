@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function () {
+    return view('Login');
+});
+
 Route::get('/Cas_Crim_Base', function () {
     return view('Cas_Crim_Base');
 });
@@ -73,6 +77,24 @@ Route::get('/Govn_Rep', function () {
     return view('Govn_Rep');
 });
 
+Route::get('/change_password', function () {
+    return view('change_password');
+});
+
+//--------------------------------------------------------------------------------------------------
+
 Route::post('/Add_Report', 'AddReportController@Add');
 
 Route::post('/Asking', 'AskingController@Add');
+
+Route::post('/log_in', 'LoginController@ValnLog');
+
+Route::post('/sign_up', 'LoginController@SignUp');
+
+Route::post('/change_password', 'LoginController@ChangePassword');
+
+Route::post('/logout', 'LoginController@LogOut');
+
+Route::post('/profile', 'BasicController@ViewProf');
+
+Route::post('/main_menu', 'BasicController@MMenuRet');
