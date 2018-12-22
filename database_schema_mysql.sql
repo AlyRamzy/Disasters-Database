@@ -21,6 +21,7 @@ create table Incident
     description text,
     location varchar(60) not null,
     name varchar(20),
+    type varchar(20),
     primary key (id),
     foreign key (name) references Disaster(name)
     on delete set null on update cascade
@@ -79,7 +80,7 @@ create table Government_Representative
   (
     ssn varchar(14),
     username varchar(20) not null,
-    password varchar(10) not null,
+    password varchar(60) not null,
     data_of_join datetime default CURRENT_TIMESTAMP(),
     primary key (ssn),
     foreign key (ssn) references Person(ssn)
@@ -90,7 +91,7 @@ create table Citizen
   (
     ssn varchar(14),
     username varchar(20) not null,
-    password varchar(10) not null,
+    password varchar(60) not null,
     data_of_join datetime default CURRENT_TIMESTAMP(),
     trust_level int not null default 0,
     primary key (ssn),
@@ -102,7 +103,7 @@ create table Admin
   (
     ssn varchar(14),
     username varchar(20) not null,
-    password varchar(10) not null,
+    password varchar(60) not null,
     no_banned_users int default 0,
     no_added_admins int default 0,
     primary key (ssn),
