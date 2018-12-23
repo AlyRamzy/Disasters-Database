@@ -11,9 +11,9 @@
         <form method="post" action="/Asking">
           {{ csrf_field() }}
 
-          Enter the Incident ID:  <input type="number" name="in_id" style="margin-bottom:19px">
+          Enter the Incident Name:  <input type="text" name="in_name" style="margin-bottom:19px">
 
-          <textarea class="form-control" type="text" name="question_txt" rows="3" required>Enter your question here...</textarea>
+          <textarea class="form-control" type="text" name="question_txt" rows="3" placeholder="Enter your question here..." required></textarea>
 
           <input type="submit" class="btn btn-success" style="margin-top:19px"></input>
 

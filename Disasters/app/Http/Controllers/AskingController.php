@@ -13,7 +13,7 @@ class AskingController extends Controller
     $executor = new QueryExecutor();
 
     $question = request('question_txt');
-    $inc_id = request('in_id');
+    $inc_name = request('in_name');
     if(!isset($_COOKIE['user'])) {
         echo "Cookie named 'user' is not set!";
     } else {
@@ -21,12 +21,12 @@ class AskingController extends Controller
         $ssn = $_COOKIE['user'];
     }
 
-    $all_ids = $executor->getIncID();
-    $all_ids = mysqli_fetch_assoc($all_ids);
+    $all_names = $executor->getIncName();
+    $all_names = mysqli_fetch_assoc($all_names);
 
-    if (in_array($inc_id, (array)$all_ids['id']))
+    if (in_array($inc_name, (array)$all_names['name']))
     {
-      $executor->addDisc($inc_id, $question, $ssn);
+      $executor->addDisc($inc_name, $question, $ssn);
       return view('/Asking');
     }
     else

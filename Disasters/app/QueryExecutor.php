@@ -629,9 +629,9 @@ if (mysqli_query($this->conn, $sql)) {
     }
   }
 
-  public function getIncID()
+  public function getIncName()
   {
-    $sql = "Select id From incident";
+    $sql = "Select name From incident";
 
     if (mysqli_query($this->conn, $sql)) {
         $data = mysqli_query($this->conn, $sql);
@@ -642,12 +642,21 @@ if (mysqli_query($this->conn, $sql)) {
     }
   }
 
-  public function addDisc($inc_id, $question, $ssn)
+  public function addDisc($inc_name, $question, $ssn)
   {
-    $sql = "Insert into discussion (question, incident_id,  citizen_ssn) values ('".$question."', ".$inc_id.", '".$ssn."')"; //User SSN s is to be taken from the cookie once log in is done
-
+    $sql = "Select id From incident Where name = '".$inc_name."'";
     if (mysqli_query($this->conn, $sql)) {
-        echo "New record created successfully";
+        $data = mysqli_query($this->conn, $sql);
+        $data = mysqli_fetch_assoc($data);
+        $data = $data['id'];
+
+        $sql = "Insert into discussion (question, incident_id,  citizen_ssn) values ('".$question."', ".$data.", '".$ssn."')";
+
+        if (mysqli_query($this->conn, $sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+        }
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
     }
