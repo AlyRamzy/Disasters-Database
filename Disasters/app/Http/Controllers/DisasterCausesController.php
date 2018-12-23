@@ -20,6 +20,7 @@ class DisasterCausesController extends Controller
     $cause =  $executor->DCauses($DisasterName);
     $cause = mysqli_fetch_assoc($cause);
 
-    return view('/D_Causes' , ['DCauses' =>  $cause['possible_causes'] ]);   //to be changed
+    return view('/D_Causes' , ['DCauses' =>  $cause['possible_causes'] ,
+                                'Dname' => $DisasterName ]);   
   }
 }

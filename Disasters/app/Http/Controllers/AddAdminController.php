@@ -112,7 +112,7 @@ class AddAdminController extends Controller
     //Check whether the user exists
   $executor = new QueryExecutor();
 
-  $all_ssns = $executor->getALLSSN();
+  $all_ssns = $executor->getALLUSSN();      
   $all_ssns = $this->proc_result($all_ssns);
 
   if (in_array($ssn, (array)$all_ssns['ssn']))

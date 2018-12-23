@@ -2,60 +2,35 @@
 
 @section('content7')
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Damage </th>
-      <th scope="col">Incident </th>
-      <th scope="col">Incident location </th>
-      <th scope="col">Incident Description</th>
-      <th scope="col">year</th>
-      <th scope="col">month</th>
-      <th scope="col">Day</th>
-    </tr>
-  </thead>
-  <tbody>
 
-    <tr>
-      @foreach( $Damage as $D )
 
-      <td> {{ $D }} </td>
-      @endforeach
+@for ($i = 0; $i < $n ; $i++)
+<div class="card">
 
-      @foreach( $Iname as $name )
+  <div class="card-body" class="effect">
+ <h6 class="card-title">Damage </h6>
 
-      <td> {{ $name }} </td>
-      @endforeach
+<p class="card-text"> {{ $Damage[$i] }}</p>
 
-      @foreach( $location as $L )
+ <h6 class="card-title">Incident </h6>
 
-      <td> {{ $L }} </td>
-      @endforeach
+<p class="card-text"> {{ $Iname[$i] }}</p>
 
-      @foreach( $description as $Desc )
+ <h6 class="card-title">Incident location  </h6>
 
-      <td> {{ $Desc }} </td>
-      @endforeach
+ <p class="card-text"> {{ $location[$i] }}</p>
 
-      @foreach( $year as $Y )
+ <h6 class="card-title">Incident Description </h6>
 
-      <td> {{ $Y }} </td>
-      @endforeach
+<p class="card-text"> {{ $description[$i] }}</p>
 
-      @foreach( $month as $M )
+ <h6 class="card-title">Date </h6>
 
-      <td> {{ $M }} </td>
-      @endforeach
+<p class="card-text"> {{ $year[$i] }}  . "-" . {{ $month[$i] }}  . "-" . {{ $day[$i] }} </p>
 
-      @foreach( $day as $Days )
+</div>
+</div>
+  @endfor
 
-      <td> {{ $Days }} </td>
-      @endforeach
-
-    </tr>
-
-  </tbody>
-
-  </table>
 
 @endsection

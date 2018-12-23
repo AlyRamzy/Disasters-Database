@@ -27,7 +27,6 @@ overflow-y: scroll;
 <div  class="container list-group">
 
 
-
 <br>
 
 
@@ -41,13 +40,16 @@ overflow-y: scroll;
   </select>
   <br><br>
  <h3 style="color:white; ">Type<select    name="disaster" style="margin-left:180px; color:white;" class="effect" ></h3>
+
  @foreach ($disasters as $disaster)
     <h3 ><option style="background-color:darkred;" value="{{$disaster["name"]}}" >{{$disaster["name"]}}</option></h3>
    @endforeach
   </select>
   <br><br>
-  <h3 style="color:white;">Name:<input class="effect" type="text" name="name" style="margin-left:150px" ><br></h3>
+
+<h3 style="color:white;">Name:<input class="effect" type="text" name="name" style="margin-left:150px" ><br></h3>
 <br><br>
+
  <h3 style="color:white;">Description: <textarea class="effect" name=" Description" rows="5" cols="40" style="margin-left:86px"></textarea></h3>
   <br><br>
 <h3 style="color:white;">Location:<input class="effect" type="text" name="Location" style="margin-left:119px" ><br></h3>
@@ -60,6 +62,7 @@ overflow-y: scroll;
 @yield('Incident')
 <br>
 <input class="btn-lg btn-danger"  type="submit" style="text-align:center; margin-left:350px"  >
+
 <div >
 <ul>
 @foreach ($errors->all() as $error)
@@ -68,8 +71,7 @@ overflow-y: scroll;
 </ul>
 
 </div>
-</form> 
-  
+</form>
 
 
 </div>

@@ -34,6 +34,26 @@ class QueryExecutor extends Model
     }
 
   }
+  
+ public function getALLUSSN()
+ {
+   $sql = " (select person.ssn from person, government_representative where person.ssn =  government_representative.ssn)
+      Union (select person.ssn from person, admin where person.ssn =  admin.ssn);
+      Union (select person.ssn from person, citizen where person.ssn =  citizen.ssn );";
+
+      if(mysqli_query($this->conn,$sql)){
+
+        $data= mysqli_query($this->conn,$sql);
+        return ($data);
+      }
+      else{
+        echo "Error "."<br>". mysqli_error($this->conn);
+        return;
+
+      }
+
+ }
+  
   public function GetAllAdminInfo($ssn)
   {
     $sql="SELECT * FROM person p,admin d WHERE p.ssn=d.ssn AND p.ssn=  '".$ssn."'";
@@ -52,6 +72,7 @@ class QueryExecutor extends Model
   public function GetAllCitizenInfo($ssn)
   {
     $sql="SELECT * FROM person p,citizen c WHERE p.ssn=c.ssn AND p.ssn=  '".$ssn."'";
+    
     if(mysqli_query($this->conn,$sql)){
 
       $data= mysqli_query($this->conn,$sql);
@@ -65,10 +86,201 @@ class QueryExecutor extends Model
 
   }
 
+  public function AllCriminals()
+  {
+    $sql = "select ssn from criminal;";
+    if (mysqli_query($this->conn, $sql)) {
+
+      echo "data retrived  successfully";
+      $data = mysqli_query($this->conn, $sql);
+      return($data);
+
+    } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                           return;}
+
+  }
+
+
+  public function AddCriminals($name, $gender , $address , $ssn , $age , $NoC , $State , $Nov ,   $inc_Id)
+  {
+    $allSSNs = $this->getALLSSN();
+    $CSSNs = $this ->AllCriminals();
+
+    if (in_array($ssn, (array)$allSSNs))
+    {
+      if (in_array($ssn, (array)$CSSNs))
+      {
+        $sql = "select * from criminal_hm_incident where hm_incident_id  = '" .  $inc_Id .  "' and criminal_ssn = '" . $ssn . "' );";
+
+        if (mysqli_query($this->conn, $sql)) {
+
+          $data = mysqli_query($this->conn, $sql);
+
+        if( mysqli_num_rows($data) == 0 ) {
+
+        $sql = "insert into criminal_hm_incident (hm_incident_id  , criminal_ssn) values ('" .  $inc_Id .  "', '" . $ssn . "' );";
+
+        if(mysqli_query($this->conn, $sql)){
+
+          echo "data inserted successfully";
+          return;
+        } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                               return;}
+
+        } else {
+
+          echo " this Criminal already exists in this incident ";
+          return;  }
+
+        } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                               return;}
+
+
+      } else {
+
+        $sql1 = "Insert into criminal (ssn, no_of_crimes , current_state , no_of_victims  ) values ('" . $ssn . "', " . $NoC . "," . $State . " , " . $Nov . ");";
+        $sql2 = "insert into criminal_hm_incident (hm_incident_id  , criminal_ssn) values ('" .  $inc_Id .  "', '" . $ssn . "' );";
+        if (mysqli_query($this->conn, $sql1)) {
+
+          if(mysqli_query($this->conn, $sql2)){
+
+            echo "data inserted successfully";
+            return;
+          } else { echo "Error: " . $sql2 . "<br>" . mysqli_error($this->conn);
+                                 return;}
+
+        } else {
+                echo "Error: " . $sql1 . "<br>" . mysqli_error($this->conn);}
+
+      }
+
+    } else  {
+
+      $sql1 = "Insert into person (ssn, name , gender , address) values ('" . $ssn . "', '" . $name . "', " . $gender . ", '" . $address . "' );";
+      $sql2 = "Insert into criminal (ssn, no_of_crimes , current_state , no_of_victims  ) values ('" . $ssn . "', " . $NoC . "," . $State . " , " . $Nov . ");";
+      $sql3 =  "insert into criminal_hm_incident (hm_incident_id  , criminal_ssn) values ('" .  $inc_Id .  "', '" . $ssn . "' );";
+
+      if (mysqli_query($this->conn, $sql1)) {
+
+        if (mysqli_query($this->conn, $sql2)) {
+
+          if(mysqli_query($this->conn, $sql3)){
+
+            echo "data inserted successfully";
+            return;
+          } else { echo "Error: " . $sql3 . "<br>" . mysqli_error($this->conn);
+                                 return;}
+
+        } else {
+                echo "Error: " . $sql2 . "<br>" . mysqli_error($this->conn);}
+
+            } else {
+                echo "Error: " . $sql1 . "<br>" . mysqli_error($this->conn);  }
+    }
+
+  }
+
+
+
+  public function ALLCasualty()
+  {
+    $sql = "select ssn from casualty;";
+    if (mysqli_query($this->conn, $sql)) {
+
+      echo "data retrived  successfully";
+      $data = mysqli_query($this->conn, $sql);
+      return($data);
+
+    } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                           return;}
+
+  }
+
+
+  public function AddC($name, $gender , $address , $ssn , $age , $deg ,   $inc_Id)
+  {
+    $allSSNs = $this->getALLSSN();
+    $CSSNs = $this ->ALLCasualty();
+    if (in_array($ssn, (array)$allSSNs))
+    {
+      if (in_array($ssn, (array)$CSSNs))
+      {
+        $sql = "select * from casualty_incident where incident_id = '" .  $inc_Id .  "' and casualty_ssn = '" . $ssn . "' );";
+
+        if (mysqli_query($this->conn, $sql)) {
+
+          $data = mysqli_query($this->conn, $sql);
+
+        if( mysqli_num_rows($data) == 0 ) {
+
+        $sql = "insert into casualty_incident (incident_id  , casualty_ssn) values ('" .  $inc_Id .  "', '" . $ssn . "' );";
+
+        if(mysqli_query($this->conn, $sql)){
+
+          echo "data inserted successfully";
+          return;
+        } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                               return;}
+
+        } else {
+
+          echo " this Casualty already exists in this incident ";
+          return;
+        }
+
+
+        } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                               return;}
+
+
+      } else {
+
+        $sql1 = "Insert into casualty (ssn, deg_of_loss) values ('" . $ssn . "', " . $deg . " );";
+        $sql2 = "insert into casualty_incident (incident_id  , casualty_ssn) values ('" .  $inc_Id .  "', '" . $ssn . "' );";
+        if (mysqli_query($this->conn, $sql1)) {
+
+          if(mysqli_query($this->conn, $sql2)){
+
+            echo "data inserted successfully";
+            return;
+          } else { echo "Error: " . $sql2 . "<br>" . mysqli_error($this->conn);
+                                 return;}
+
+        } else {
+                echo "Error: " . $sql1 . "<br>" . mysqli_error($this->conn);}
+
+      }
+
+    } else  {
+
+      $sql1 = "Insert into person (ssn, name , gender , address) values ('" . $ssn . "', '" . $name . "', " . $gender . ", '" . $address . "' );";
+      $sql2 = "Insert into casualty (ssn, deg_of_loss) values ('" . $ssn . "', " . $deg . " );";
+      $sql3 = "insert into casualty_incident (incident_id  , casualty_ssn) values ('" .  $inc_Id .  "', '" . $ssn . "' );";
+
+      if (mysqli_query($this->conn, $sql1)) {
+
+        if (mysqli_query($this->conn, $sql2)) {
+
+          if(mysqli_query($this->conn, $sql3)){
+
+            echo "data inserted successfully";
+            return;
+          } else { echo "Error: " . $sql3 . "<br>" . mysqli_error($this->conn);
+                                 return;}
+
+        } else {
+                echo "Error: " . $sql2 . "<br>" . mysqli_error($this->conn);}
+
+            } else {
+                echo "Error: " . $sql1 . "<br>" . mysqli_error($this->conn);  }
+    }
+
+  }
 
   public function GetAllUsers()
   {
     $sql="SELECT name,c.ssn FROM person p,citizen c WHERE p.ssn=c.ssn  ";
+  
     if(mysqli_query($this->conn,$sql)){
 
       $data= mysqli_query($this->conn,$sql);
@@ -114,6 +326,7 @@ class QueryExecutor extends Model
 
     }
   }
+
   public function GetDiscussions()
   {
     $sql="SELECT dics_id,question,answer,username,ssn,name FROM discussion d, citizen c , incident i WHERE d.citizen_ssn=c.ssn AND d.incident_id =i.id";
@@ -155,6 +368,7 @@ class QueryExecutor extends Model
 
     }
   }
+  
   public function GetReports()
   {
     $sql="SELECT report_id FROM report  WHERE incident_id IS NULL";
@@ -181,6 +395,7 @@ class QueryExecutor extends Model
           .$location ."', '"
           .$type . "', "
           .$name.")";
+    
     if(mysqli_query($this->conn,$sqlinc)){
       $sqlID="SELECT MAX(id) FROM incident";
 
@@ -194,6 +409,7 @@ class QueryExecutor extends Model
        .$causes .")";
        if(mysqli_query($this->conn,$sqlhuman))
        {
+
         $sqldis = " update disaster SET no_of_prev_occur = no_of_prev_occur + 1 where name = '" . $type . "' ;";
         mysqli_query($this->conn,$sqldis);
         if($rep_id!=-1)
@@ -201,6 +417,7 @@ class QueryExecutor extends Model
         $rep="UPDATE report SET incident_id =".$incid." WHERE report_id =".$rep_id. "";
         mysqli_query($this->conn,$rep);
         }
+
          echo "Incident Added Successfully";
          return;
        }
@@ -221,7 +438,6 @@ class QueryExecutor extends Model
     //return $type;
     $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , type , name ) VALUES ("
           .$Eco_Loss .", '" 
-
           .$year ."', '"
           .$month ."', '"
           .$day ."', "
@@ -243,6 +459,7 @@ class QueryExecutor extends Model
        .$physical_parm .")";
        if(mysqli_query($this->conn,$sqlnatural))
        {
+
         $sqldis = " update disaster SET no_of_prev_occur = no_of_prev_occur + 1 where name = '" . $type . "' ;";
         mysqli_query($this->conn,$sqldis);
          if($rep_id!=-1)
@@ -250,6 +467,7 @@ class QueryExecutor extends Model
          $rep="UPDATE report SET incident_id =".$incid." WHERE report_id =".$rep_id. "";
          mysqli_query($this->conn,$rep);
          }
+         
          echo "Incident Added Successfully";
          return;
        }
@@ -264,7 +482,42 @@ class QueryExecutor extends Model
     }
   }
 
-//-----------------------------------------------------------------
+//----------------------------------------------------------------------
+
+public function HInCidents()
+{
+  $sql = "select Incident.id , Incident.name from Incident , human_made where human_made.id = Incident.id ; ";
+
+  if (mysqli_query($this->conn, $sql)) {
+
+      $data = mysqli_query($this->conn , $sql);
+      echo "Data retrived successfully";
+      return ($data);
+  } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+      return;
+  }
+
+}
+//-----------------------------------------------------------------------
+
+public function InCidents()
+{
+  $sql = "select id , name from Incident; ";
+
+  if (mysqli_query($this->conn, $sql)) {
+
+      $data = mysqli_query($this->conn , $sql);
+      echo "Data retrived successfully";
+      return ($data);
+  } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+      return;
+  }
+
+}
+  
+ //-----------------------------------------------------------------
 
 public function Citizens()
 {
@@ -409,7 +662,9 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function newAdmin($name , $username , $password , $gender , $address , $ssn , $age , $Assn)
   {
-
+    $all_ssns = $this ->getALLSSN();
+    if (!(in_array($ssn, (array)$all_ssns['ssn'])))
+    {
     $sql1 = "Insert into person (ssn, name , gender , address) values ('" . $ssn . "', '" . $name . "', " . $gender . ", '" . $address . "' )";
     $sql2 = "Insert into Admin (ssn, username , password ) values ('" . $ssn . "', '" . $username ."' , '" . $password . "' )";
     if (mysqli_query($this->conn, $sql1)) {
@@ -433,8 +688,29 @@ if (mysqli_query($this->conn, $sql)) {
               echo "Error: " . $sql1 . "<br>" . mysqli_error($this->conn);
 
           }
+
+  } else {
+    
+      $sql = "Insert into Admin (ssn, username , password ) values ('" . $ssn . "', '" . $username ."' , '" . $password . "' )";
+
+      if (mysqli_query($this->conn, $sql)) {
+                echo "New record created successfully";
+                $sql = " update admin SET no_added_admins = no_added_admins + 1 where ssn = '" . $Assn . "' ;";
+
+                if(mysqli_query($this ->conn, $sql))
+                {
+                    echo "data selected successfully";
+                    return;
+                  } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                               return;}
+
+      } else {
+              echo "Error: " . $sql2 . "<br>" . mysqli_error($this->conn);
+
+    }
   }
 
+}
 //----------------------------------------------------------------------
 
   public function DCauses($name )
@@ -586,7 +862,6 @@ if (mysqli_query($this->conn, $sql)) {
   {
       $sql = "select * from incident where year = " . $year . " and month = " . $month . " and day = " . $day . ";";
 
-
     if (mysqli_query($this->conn, $sql)) {
 
       $data = mysqli_query($this->conn, $sql);
@@ -608,7 +883,7 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function DMonth( $month , $day )
   {
-      $sql = "select * from incident where month = " . $month . " and day ='" . $day . ";";
+     $sql = "select * from incident where month = " . $month . " and day ='" . $day . ";";
 
 
     if (mysqli_query($this->conn, $sql)) {
@@ -632,8 +907,7 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function Dyear( $year , $day )
   {
-    $sql = "select * from incident where year = " . $year . " and day = " . $day . ";";
-
+    $sql = "select * from incident where year = " . $year . " and day = " . $day . ";"
 
     if (mysqli_query($this->conn, $sql)) {
 
@@ -657,7 +931,6 @@ if (mysqli_query($this->conn, $sql)) {
   public function Myear( $year , $month )
   {
     $sql = "select * from incident where year = " . $year . " and month = " . $month . ";";
-
 
     if (mysqli_query($this->conn, $sql)) {
 

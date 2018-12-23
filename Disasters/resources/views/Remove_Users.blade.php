@@ -1,9 +1,7 @@
 @extends('Admin')
 @section('img')
-style="background-image:url('{{asset('img/shutterstock_586784021(1).jpg')}}'); 
-  
-  
-  
+
+style="background-image:url('{{asset('img/remove1.jpg')}}');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;"
@@ -37,14 +35,13 @@ style="background-image:url('{{asset('img/shutterstock_586784021(1).jpg')}}');
 <form method="post" style="margin-top:30px c" action="Remove_Users">
 {{csrf_field()}}
 <br><br><br><br>
-<h3 style="color:white; margin-left:169px;">User<select   name="user" style="margin-left:169px; color:white;" class="effect" ></h3>
-   
+<h3 style="color:white; margin-left:250px;">User<select   name="user" style="margin-left:120px; color:white; padding-right:60px; padding-top:30px; padding-left:80px" class="effect" ></h3>
     @for($x=0;$x<count($users['name']);$x++)
     {
     <h3 ><option style="background-color:darkred;" value="{{$users['ssn'][$x]}}" >{{$users['name'][$x]}} : {{$users['ssn'][$x]}}</option></h3>
     }
     @endfor
-    
+
   </select>
 
   <br><br><br><br>
@@ -59,7 +56,7 @@ style="background-image:url('{{asset('img/shutterstock_586784021(1).jpg')}}');
 
 </div>
   </form>
-  
+
 </div>
 
 @endsection

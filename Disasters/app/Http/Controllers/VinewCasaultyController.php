@@ -49,6 +49,8 @@ class VinewCasaultyController extends Controller
     {
       return view('/View_Casaulty');
     }
+
+    $num = mysqli_num_rows($data);
     $data =  $this->proc_result($data);
 
     return view('/VCasaultyData' , ['Damage' => (array)$data['deg_of_loss'] ,
@@ -57,6 +59,7 @@ class VinewCasaultyController extends Controller
                                    'description' => (array)$data['description'] ,
                                    'year' => (array)$data['year'] ,
                                    'month' => (array)$data['month'] ,
-                                   'day' => (array)$data['day']  ]) ;
+                                   'day' => (array)$data['day'] , 
+                                   'n' => $num ]);
   }
 }

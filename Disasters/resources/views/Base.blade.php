@@ -8,14 +8,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
+
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
 
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 900px}
+    .row.content {height: 1212px}
 
     /* Set gray background color and 100% height */
     .sidenav {
@@ -39,6 +38,7 @@
 </html>
 <body>
   <nav class="navbar navbar-inverse" >
+      <a class="navbar-brand" style= " margin-left:15px"> Disasters </a>
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -46,6 +46,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right" style="margin-right:12px">
+
           <form action="/logout" method="post">
             {{ csrf_field() }}
             <button type="submit" name="logout" value="logout" class="btn-link" style="margin-top:12px"><span class="glyphicon glyphicon-log-out"></span> LogOut</button>

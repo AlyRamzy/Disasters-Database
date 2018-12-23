@@ -50,6 +50,7 @@ class IncidentController extends Controller
         $reports=$exec->GetReports();
         
         return view ('/Natural',compact('disasters'),compact('reports'));//['disasters'=>$dis]);
+
     }
 
     public function Addnatural()
@@ -89,6 +90,7 @@ class IncidentController extends Controller
             $description="'".$description."'";
         }
         $location=request('Location');
+
         $type=request('disaster');
         $name=request('name');
         if (empty($name))
@@ -99,7 +101,7 @@ class IncidentController extends Controller
         else{
             $name="'".$name."'";
         }
-        
+
         $Freq=request('Frequency');
         if (empty($Freq))
         {
@@ -128,7 +130,7 @@ class IncidentController extends Controller
         $disasters=$exec->InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$type,$Freq,$phy_parm,$report_id,$name);
          
         //return $disasters;
-      
+
         return $this->natural();
     }
 
@@ -146,6 +148,7 @@ class IncidentController extends Controller
         {
             $report_id=-1;
         }
+      
        $Eco_Loss=request('Economical');
        if (empty($Eco_Loss))
         {
@@ -177,6 +180,7 @@ class IncidentController extends Controller
         }
        $location=request('Location');
        $type=request('disaster');
+
        $causes=request('Causes');
        if (empty($causes))
        {
@@ -196,8 +200,9 @@ class IncidentController extends Controller
        $day= $thedate[2];
 
        $exec =new QueryExecutor();
-
+      
        $disasters=$exec->InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$type,$causes,$report_id,$name);
+
 
        // return view ('/Natural',compact('disasters'));//['disasters'=>$dis]);
        return $this->humanmade();
@@ -254,6 +259,8 @@ class IncidentController extends Controller
       return view('/Disaster_View');
     }
 
+    $num =  mysqli_num_rows($data);
+
     $data =  $this->proc_result($data);
 
     if(!isset($_COOKIE['visibility'])) {
@@ -264,7 +271,8 @@ class IncidentController extends Controller
                                      'description' => (array)$data['description'] ,
                                      'year' => (array)$data['year'] ,
                                      'month' => (array)$data['month'] ,
-                                     'day' => (array)$data['day']  ]) ;
+                                     'day' => (array)$data['day']  ],
+                                      'n' => $num ]) ;
     } else {
         $visibile = $_COOKIE['visibility'];
         $n = mysqli_num_rows($data);
@@ -330,7 +338,8 @@ class IncidentController extends Controller
                                        'description' => $des_arr ,
                                        'year' => $year_arr ,
                                        'month' => $mon_arr ,
-                                       'day' => $day_arr  ]) ;
+                                       'day' => $day_arr  ],
+                                        'n' => $num ]) ;
     }
   }
 }

@@ -9,6 +9,7 @@
         </form>
       </h4>
       <br>
+
       <h4>
         <form action="/Add_Incident" method="get">
           {{ csrf_field() }}
@@ -41,12 +42,12 @@
       <br>
       <h4><a href="/Govn_View_Disc">Discussions </a></h4>
       <br>
-    </div>
+      <h4><a href="/Profile_Govn_Rep">Personal Info</a></h4>
+      <br>
+</div>
+
     <div class="col-sm-8 text-left">
-
     @yield('content1')
-
-    </div>
 
     </div>
 
