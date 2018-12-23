@@ -1,0 +1,181 @@
+@extends('Citizen')
+@section('img')
+style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}'); 
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;"
+@endsection
+
+@section('content3')
+<style>
+.profile-card {
+  background: #FFB300;
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 70px;
+  margin-left:110px;
+  
+  
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+  animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, 
+             moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards, 
+             moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
+             materia 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+
+
+@keyframes init {
+  0% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 56px;
+    height: 56px;
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    top: 10%;
+  }
+  50% {
+    top: 25%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    background: #FFB300;
+    top: 100%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 30%;
+    background: #E0E0E0;
+  }
+}
+
+@keyframes materia {
+  0% {
+    background: #E0E0E0;
+  }
+  50% {
+    border-radius: 4px;
+  }
+  100% {
+    width: 1000px;
+    height: 570px;
+    background: #000000;
+    border-radius: 4px;
+    padding-bottom:1100px;
+    border-radius: 50px 0px;
+    background: transparent;
+    border: 0px;
+    border-bottom: 12px;
+    border-color: #ddd;
+    border-color: #B1B1B9;
+    box-shadow: 6px 10px 16px 11px;
+    box-shadow: 10px;
+    border-color: eee;
+    
+    padding:10px;
+  }
+  
+}
+</style>
+<div>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<aside class="profile-card" >
+<h1 style="text-align:center; color:white;">User Information</h1>
+<hr ><br>
+<h3 style="color:white;">SSN: {{$citizent['ssn']}}</h3>
+<hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;"  /><br/>
+<h3 style="color:white;">Name: {{$citizent['name']}} </h3>
+<hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;"><br>
+<h3 style="color:white;">Age: {{$citizent['age']}}</h3>
+<hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;"><br>
+<h3 style="color:white;">Gender: {{$citizent['gender']}}</h3>
+<hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;"><br>
+<h3 style="color:white;">Address: {{$citizent['address']}}</h3>
+<hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;"><br>
+<h3 style="color:white;">User Name: {{$citizent['username']}}</h3>
+<hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;"><br>
+<h3 style="color:white;">Password: {{$citizent['password']}}</h3>
+<hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;"><br>
+<h3 style="color:white;">Date of Join: {{$citizent['data_of_join']}}</h3>
+<hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;"><br>
+<h3 style="color:white;">Trust Level: {{$citizent['trust_level']}}</h3>
+
+
+</aside>
+</div>
+@endsection
