@@ -1,12 +1,11 @@
 @extends ('Govn_Rep')
 @section('img')
+
 style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}'); 
   
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  
-  
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;"
@@ -26,7 +25,6 @@ style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}');
   opacity: 0;
   margin-top: 70px;
   margin-left:110px;
-  
   
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -101,7 +99,6 @@ style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}');
     box-shadow: 6px 10px 16px 11px;
     box-shadow: 10px;
     border-color: eee;
-    
     padding:10px;
   }
 }
@@ -163,7 +160,7 @@ style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}');
     border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;"><br>
-<h3 style="color:white;">Password: {{$govrep['password']}}</h3>
+<h3 style="color:white;">Password: <a href="/change_password"> Change Password</a></h3>
 <hr style="display: block;
     height: 1px;
     border: 0;
@@ -175,4 +172,5 @@ style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}');
 
 </aside>
 </div>
+
 @endsection

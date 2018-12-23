@@ -1,13 +1,12 @@
 @extends('Admin')
 
 @section('img')
+
 style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}'); 
   
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  
-  
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;"
@@ -26,13 +25,13 @@ style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}');
   opacity: 0;
   margin-top: 70px;
   margin-left:110px;
-  
-  
+
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   -webkit-border-radius: 50%;
   border-radius: 50%;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+
   animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, 
              moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards, 
              moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
@@ -101,7 +100,6 @@ style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}');
     box-shadow: 6px 10px 16px 11px;
     box-shadow: 10px;
     border-color: eee;
-    
     padding:10px;
   }
 }
@@ -158,7 +156,7 @@ style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}');
     border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;"><br>
-<h3 style="color:white;">Password: {{$admin['password']}}</h3>
+<h3 style="color:white;">Password: <a href="/change_password"> Change Password</h3>
 <hr style="display: block;
     height: 1px;
     border: 0;
@@ -177,4 +175,6 @@ style="background-image:url('{{asset('img/wallpaper-1506954.jpg')}}');
 
 </aside>
 </div>
+
 @endsection
+
