@@ -907,7 +907,7 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function Dyear( $year , $day )
   {
-    $sql = "select * from incident where year = " . $year . " and day = " . $day . ";"
+    $sql = "select * from incident where year = " . $year . " and day = " . $day . ";";
 
     if (mysqli_query($this->conn, $sql)) {
 
@@ -1114,7 +1114,7 @@ if (mysqli_query($this->conn, $sql)) {
     }
   }
 
-  public function GetReports()
+  public function GetReportsInfo()
   {
       $sql = "Select report_id, content From report";
       if (mysqli_query($this->conn, $sql)) {
