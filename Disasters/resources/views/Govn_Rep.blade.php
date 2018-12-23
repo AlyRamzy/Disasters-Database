@@ -18,6 +18,8 @@
       <br>
       <h4><a href="/Profile_Govn_Rep">Personal Info</a></h4>
       <br>
+      <h4><a href="/Govn_View_Disc">Discussions </a></h4>
+      <br>
     </div>
     <div class="col-sm-8 text-left">
 

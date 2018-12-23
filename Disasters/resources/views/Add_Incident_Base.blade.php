@@ -26,6 +26,13 @@
 
  <form @yield('action') method="POST">
  {{csrf_field()}}
+ <h3 style="color:white; ">Report ID<select    name="report" style="margin-left:169px; color:white;" class="effect" ></h3>
+ <h3 ><option disabled selected value style="background-color:darkred;" value="NULL" >select an option</option></h3>
+ @foreach ($reports as $report)
+    <h3 ><option style="background-color:darkred;" value="{{$report["report_id"]}}" >{{$report["report_id"]}}</option></h3>
+   @endforeach
+  </select>
+  <br><br>
  <h3 style="color:white; ">Type<select    name="disaster" style="margin-left:169px; color:white;" class="effect" ></h3>
  @foreach ($disasters as $disaster)
     <h3 ><option style="background-color:darkred;" value="{{$disaster["name"]}}" >{{$disaster["name"]}}</option></h3>

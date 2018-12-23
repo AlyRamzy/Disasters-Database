@@ -36,15 +36,17 @@ class IncidentController extends Controller
     {
         $exec =new QueryExecutor();
         $disasters=$exec->GetDisasters();
+        $reports=$exec->GetReports();
         
-        return view ('/Human_Made',compact('disasters'));//['disasters'=>$dis]);
+        return view ('/Human_Made',compact('disasters'),compact('reports'));//['disasters'=>$dis]);
     }
     public function natural()
     {
         $exec =new QueryExecutor();
         $disasters=$exec->GetDisasters();
+        $reports=$exec->GetReports();
         
-        return view ('/Natural',compact('disasters'));//['disasters'=>$dis]);
+        return view ('/Natural',compact('disasters'),compact('reports'));//['disasters'=>$dis]);
     }
 
     public function Addnatural()
@@ -56,6 +58,12 @@ class IncidentController extends Controller
             'disaster'=>'required'
 
         ]);
+        $report_id= request('report');
+        if (empty($report_id))
+        {
+            $report_id=-1;
+        }
+       
         
         $Eco_Loss=request('Economical');
         if (empty($Eco_Loss))
@@ -102,7 +110,7 @@ class IncidentController extends Controller
         $day= $thedate[2]; 
  
         $exec =new QueryExecutor();
-        $disasters=$exec->InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$name,$Freq,$phy_parm);
+        $disasters=$exec->InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$name,$Freq,$phy_parm,$report_id);
          
         
         return $this->natural();
@@ -116,6 +124,11 @@ class IncidentController extends Controller
             'Location'=>'required',
             'disaster'=>'required'
         ]);
+        $report_id= request('report');
+        if (empty($report_id))
+        {
+            $report_id=-1;
+        }
        $Eco_Loss=request('Economical');
        if (empty($Eco_Loss))
         {
@@ -157,7 +170,7 @@ class IncidentController extends Controller
        $day= $thedate[2]; 
 
        $exec =new QueryExecutor();
-       $disasters=$exec->InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$name,$causes);
+       $disasters=$exec->InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$name,$causes,$report_id);
         
        // return view ('/Natural',compact('disasters'));//['disasters'=>$dis]);
        return $this->humanmade();

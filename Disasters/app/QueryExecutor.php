@@ -114,6 +114,32 @@ class QueryExecutor extends Model
 
     }
   }
+  public function GetDiscussions()
+  {
+    $sql="SELECT dics_id,question,answer,username,ssn,name FROM discussion d, citizen c , incident i WHERE d.citizen_ssn=c.ssn AND d.incident_id =i.id";
+    if(mysqli_query($this->conn,$sql)){
+      
+      $data= mysqli_query($this->conn,$sql);
+      return ($data);
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+
+    }
+  }
+  public function AnsDisc($ssn,$answer,$id)
+  {
+    $sql=" UPDATE discussion SET answer='".$answer."', govn_ssn= ".$ssn." WHERE dics_id=".$id;
+    if(mysqli_query($this->conn,$sql)){
+      
+      echo "Answered Succesfully";
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+  }
+}
 
   public function GetDisasters()
   {
@@ -129,7 +155,21 @@ class QueryExecutor extends Model
 
     }
   }
-  public function InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$name,$causes)
+  public function GetReports()
+  {
+    $sql="SELECT report_id FROM report  WHERE incident_id IS NULL";
+    if(mysqli_query($this->conn,$sql)){
+      
+      $data= mysqli_query($this->conn,$sql);
+      return ($data);
+    }
+    else{
+      echo "Error "."<br>". mysqli_error($this->conn);
+      return;
+
+    }
+  }
+  public function InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$name,$causes,$rep_id)
   {
     $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , name ) VALUES ("
           .$Eco_Loss .", '" 
@@ -152,6 +192,11 @@ class QueryExecutor extends Model
        .$causes .")";
        if(mysqli_query($this->conn,$sqlhuman))
        {
+        if($rep_id!=-1)
+        {
+        $rep="UPDATE report SET incident_id =".$incid." WHERE report_id =".$rep_id. "";
+        mysqli_query($this->conn,$rep);
+        }
          echo "Incident Added Successfully";
          return;
        }
@@ -167,7 +212,7 @@ class QueryExecutor extends Model
     }
   }
 
-  public function InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$name,$Freq,$physical_parm)
+  public function InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$name,$Freq,$physical_parm,$rep_id)
   {
     $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , name ) VALUES ("
           .$Eco_Loss .", '" 
@@ -190,6 +235,11 @@ class QueryExecutor extends Model
        .$physical_parm .")";
        if(mysqli_query($this->conn,$sqlnatural))
        {
+         if($rep_id!=-1)
+         {
+         $rep="UPDATE report SET incident_id =".$incid." WHERE report_id =".$rep_id. "";
+         mysqli_query($this->conn,$rep);
+         }
          echo "Incident Added Successfully";
          return;
        }
@@ -374,21 +424,6 @@ if (mysqli_query($this->conn, $sql)) {
 
           }
   }
-
-//----------------------------------------------------------------------
-
-public function getALLSSN()
-{
-  $sql = "select ssn from person;";
-  if(mysqli_query($this->conn, $sql))
-  {
-    $data = mysqli_query($this->conn, $sql);
-    return ($data);
-  } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
-  }
-}
-
 
 //----------------------------------------------------------------------
 

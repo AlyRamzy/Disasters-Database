@@ -84,6 +84,7 @@ Route::get('/Profile_Citizent','Profile@Citizent');
 
 Route::post('/Remove_Users','RemoveUser@Remove');
 Route::get('/Remove_Users','RemoveUser@MakeViewRemove');
+Route::get('/Govn_View_Disc','Govn_Disc@ViewDisc');
 
 Route::get('/Add_Admin', function () {
     return view('Add_Admin');
@@ -150,3 +151,5 @@ Route::post('/Add_Admin', 'AddAdminController@addNew');
 Route::post('/View_Casaulty', 'VinewCasaultyController@VCasaulty');
 
 Route::post('/Disaster_View', 'IncidentController@VIncident');
+
+Route::post('/Ans_Disc','Govn_Disc@Answer');
