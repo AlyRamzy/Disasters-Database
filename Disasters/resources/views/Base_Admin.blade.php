@@ -30,14 +30,14 @@ style="background-image:url('{{asset('img/admin.jpg')}}');
 
 <br>
 <br>
-<h3 style="color:white; margin-left:20px;">Add New Admin <a href="Add_Admin"><button type="button" class="btn btn-outline-primary" style = "margin-bottom:15px; margin-left:15px"> Click here</button></a></h3>
+<h1><a href="Add_Admin" style="margin-left:30px;color:white;">Add New Admin</a></h1>
 
 <br>
 
 <form method="post" action="/ExistingUser">
 {{ csrf_field() }}
 
-<h3 style="color:white; margin-left:20px;">Add existing user<button type="submit" class="btn btn-outline-primary" style = "margin-bottom:15px; margin-left:15px; color:black"> Click here</button></h3>
+<h1><button type="submit" class="btn-link" style="margin-left:20px;color:white;">Add Existing User</button></h1>
 
 
 </form>

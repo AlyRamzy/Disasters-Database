@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 use App\QueryExecutor;
 
-class AddCasualtyController extends Controller
+class AddCriminalController extends Controller
 {
+
+
   private function test_input($data)
   {
     $data = trim($data);
@@ -42,19 +44,18 @@ class AddCasualtyController extends Controller
   public function IncIDs()
   {
     $executor = new QueryExecutor();
-    $data =  $executor->InCidents();
+    $data =  $executor->HInCidents();
     $num = mysqli_num_rows($data);
     $data = $this->proc_result($data);
 
-    return view('/Add_Casuality' , ['IDs' =>(array)$data['id'] , 'Names' =>(array)$data['name'] , 'n' => $num ]);
+    return view('/Add_Criminal' , ['IDs' =>(array)$data['id'] , 'Names' =>(array)$data['name'] , 'n' => $num ]);
 
   }
 
-  public function AddCasualty()
+  public function AddCriminal()
   {
-
-  $degLossErr = $ssnErrN =$genderErr = $ageErr = $nameErr=$addressErr ="";
-  $deg=$ssn= $gender = $age = $address = $name ="";
+  $degLossErr = $ssnErrN =$genderErr = $ageErr = $nameErr=$addressErr =  "";
+  $ssn = $gender = $age = $address =$NoC= $State= $Nov= $name ="";
 
   if (empty(request('name'))) {
     $nameErr = "Name is required";
@@ -118,28 +119,52 @@ class AddCasualtyController extends Controller
     }
   }
 
-  if (empty(request('Degree'))) {
-    $deg = 0;
+  if (empty(request('num1'))) {
+    $Nov = 0;
   } else {
-    $deg = $this->test_input(request('Degree'));
-    if($deg == '1')
+    $Nov = $this->test_input(request('num1'));
+    if (!preg_match("/^[0-9 ]*$/",$Nov)) {
+      $ageErr = "Only Numbers and white space allowed";
+      echo $ageErr;
+      return $this->IncIDs();
+    }
+  }
+
+  if (empty(request('num2'))) {
+    $NoC = 0;
+  } else {
+    $NoC = $this->test_input(request('num2'));
+    if (!preg_match("/^[0-9 ]*$/",$NoC)) {
+      $ageErr = "Only Numbers and white space allowed";
+      echo $ageErr;
+      return $this->IncIDs();
+    }
+  }
+
+  if (empty(request('state'))) {
+    $State = 'null';
+  } else {
+    $State = $this->test_input(request('state'));
+    if ($State == 'jail')
     {
-      $deg = 1;
+      $State = 0;
     }
-    if($deg == '2')
+    else
     {
-      $deg =2;
+      $State = 1;
     }
-    else {
-      $deg = 3;
-    }
-}
+  }
+
   $inc_Id = request('I_name');
 
-  $executor->AddC($name, $gender , $address , $ssn , $age , $deg ,   $inc_Id );
+  $executor->AddCriminals($name, $gender , $address , $ssn , $age , $NoC , $State , $Nov ,   $inc_Id);
 
-return $this->IncIDs();
+  return $this->IncIDs();
 
-}
+  }
+
+
+
+
 
 }

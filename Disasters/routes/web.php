@@ -18,9 +18,11 @@ Route::get('/', function () {
 Route::get('/Cas_Crim_Base', function () {
     return view('Cas_Crim_Base');
 });
+
 //Route::get('/Human_Made', function () {
   //  return view('Human_Made');
 //});
+
 Route::get('/Human_Made','IncidentController@humanmade');
 Route::post('/Human_Made','IncidentController@Addhumanmade');
 Route::get('/Natural','IncidentController@natural');
@@ -74,7 +76,7 @@ Route::get('/Admin', function () {
 });
 
 //Route::get('/Remove_Users', function () {
-    
+
   //  return view('Remove_Users');
 //});
 Route::get('/Profile_Govn_Rep','Profile@GovRep');
@@ -150,3 +152,11 @@ Route::post('/Add_Admin', 'AddAdminController@addNew');
 Route::post('/View_Casaulty', 'VinewCasaultyController@VCasaulty');
 
 Route::post('/Disaster_View', 'IncidentController@VIncident');
+
+Route::post('/Id_Names', 'AddCasualtyController@IncIDs');
+
+Route::post('/Add_Casualty', 'AddCasualtyController@AddCasualty');
+
+Route::post('/CId_Names', 'AddCriminalController@IncIDs');
+
+Route::post('/Add_Criminal', 'AddCriminalController@AddCriminal');
