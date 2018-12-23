@@ -8,7 +8,7 @@ use App\QueryExecutor;
 
 class IncidentController extends Controller
 {
-  
+
     private function proc_result($data)
       {
         $fields = mysqli_fetch_fields($data);
@@ -36,14 +36,17 @@ class IncidentController extends Controller
     {
         $exec =new QueryExecutor();
         $disasters=$exec->GetDisasters();
+
         $reports=$exec->GetReports();
         
-        return view ('/Human_Made',compact('disasters'),compact('reports'));//['disasters'=>$dis]);
+        return view ('/Human_Made',compact('disasters'),compact('reports'));//['disasters'=>$dis])
     }
+
     public function natural()
     {
         $exec =new QueryExecutor();
         $disasters=$exec->GetDisasters();
+
         $reports=$exec->GetReports();
         
         return view ('/Natural',compact('disasters'),compact('reports'));//['disasters'=>$dis]);
@@ -59,13 +62,13 @@ class IncidentController extends Controller
             'name'=>'required'
 
         ]);
+
         $report_id= request('report');
         if (empty($report_id))
         {
             $report_id=-1;
         }
-       
-        
+
         $Eco_Loss=request('Economical');
         if (empty($Eco_Loss))
         {
@@ -112,18 +115,20 @@ class IncidentController extends Controller
         else{
             $phy_parm="'".$phy_parm."'";
         }
- 
+
         $thedate = explode("-", $date);
- 
-     
-        $year = $thedate[0]; 
-        $month = $thedate[1]; 
-        $day= $thedate[2]; 
- 
+
+
+        $year = $thedate[0];
+        $month = $thedate[1];
+        $day= $thedate[2];
+
         $exec =new QueryExecutor();
+
         $disasters=$exec->InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$type,$Freq,$phy_parm,$report_id,$name);
          
         //return $disasters;
+      
         return $this->natural();
     }
 
@@ -178,21 +183,22 @@ class IncidentController extends Controller
            $causes='NULL';
 
        }
-       else 
+       else
        {
            $causes="'".$causes."'";
        }
 
        $thedate = explode("-", $date);
 
-    
-       $year = $thedate[0]; 
-       $month = $thedate[1]; 
-       $day= $thedate[2]; 
+
+       $year = $thedate[0];
+       $month = $thedate[1];
+       $day= $thedate[2];
 
        $exec =new QueryExecutor();
+
        $disasters=$exec->InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$type,$causes,$report_id,$name);
-        
+
        // return view ('/Natural',compact('disasters'));//['disasters'=>$dis]);
        return $this->humanmade();
     }
@@ -204,6 +210,7 @@ class IncidentController extends Controller
   {
 
     $executor = new QueryExecutor();
+
     $day = request('Iday');
     $month = request('Imonth');
     $year = request('Iyear');
@@ -246,15 +253,84 @@ class IncidentController extends Controller
     {
       return view('/Disaster_View');
     }
+
     $data =  $this->proc_result($data);
 
-    return view('/DView' , ['ID' => (array)$data['id'] ,
-                                    'DName' =>(array)$data['name'],
-                                    'Eco_losses' => (array)$data['eco_loss'] ,
-                                    'Location' =>(array)$data['location'],
-                                   'description' => (array)$data['description'] ,
-                                   'year' => (array)$data['year'] ,
-                                   'month' => (array)$data['month'] ,
-                                   'day' => (array)$data['day']  ]) ;
+    if(!isset($_COOKIE['visibility'])) {
+      return view('/DView' , ['ID' => (array)$data['id'] ,
+                                      'DName' =>(array)$data['name'],
+                                      'Eco_losses' => (array)$data['eco_loss'] ,
+                                      'Location' =>(array)$data['location'],
+                                     'description' => (array)$data['description'] ,
+                                     'year' => (array)$data['year'] ,
+                                     'month' => (array)$data['month'] ,
+                                     'day' => (array)$data['day']  ]) ;
+    } else {
+        $visibile = $_COOKIE['visibility'];
+        $n = mysqli_num_rows($data);
+
+        $eco_arr = array();
+        if ($visible['eco_loss'])
+        {
+          for ($i = 0; $i < $n ; $i++)
+          {
+            array_push($eco_arr, 'HIDDEN');
+          }
+        }
+
+        $loc_arr = array();
+        if ($visible['location'])
+        {
+          for ($i = 0; $i < $n ; $i++)
+          {
+            array_push($loc_arr, 'HIDDEN');
+          }
+        }
+
+        $des_arr = array();
+        if ($visible['description'])
+        {
+          for ($i = 0; $i < $n ; $i++)
+          {
+            array_push($des_arr, 'HIDDEN');
+          }
+        }
+
+        $year_arr = array();
+        if ($visible['year'])
+        {
+          for ($i = 0; $i < $n ; $i++)
+          {
+            array_push($year_arr, 'HIDDEN');
+          }
+        }
+
+        $mon_arr = array();
+        if ($visible['month'])
+        {
+          for ($i = 0; $i < $n ; $i++)
+          {
+            array_push($mon_arr, 'HIDDEN');
+          }
+        }
+
+        $day_arr = array();
+        if ($visible['day'])
+        {
+          for ($i = 0; $i < $n ; $i++)
+          {
+            array_push($day_arr, 'HIDDEN');
+          }
+        }
+
+        return view('/DView' , ['ID' => (array)$data['id'] ,
+                                        'DName' =>(array)$data['name'],
+                                        'Eco_losses' => $eco_arr ,
+                                        'Location' => $loc_arr,
+                                       'description' => $des_arr ,
+                                       'year' => $year_arr ,
+                                       'month' => $mon_arr ,
+                                       'day' => $day_arr  ]) ;
+    }
   }
 }
