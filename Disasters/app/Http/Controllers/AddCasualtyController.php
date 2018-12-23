@@ -53,6 +53,8 @@ class AddCasualtyController extends Controller
   public function AddCasualty()
   {
 
+    $executor = new QueryExecutor();
+
   $degLossErr = $ssnErrN =$genderErr = $ageErr = $nameErr=$addressErr ="";
   $deg=$ssn= $gender = $age = $address = $name ="";
 

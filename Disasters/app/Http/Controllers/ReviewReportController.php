@@ -53,6 +53,6 @@ class ReviewReportController extends Controller
       $executor = new QueryExecutor();
       $executor->TrustReport($id, $gssn);
 
-      return view('/Add_Incident');  //To de Edited
+      return view('/Add_Incident'); 
     }
 }

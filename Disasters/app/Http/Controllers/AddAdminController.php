@@ -58,6 +58,7 @@ class AddAdminController extends Controller
     return view('/Add_Admin');
   } else {
     $password = $this->test_input(request('passWord'));
+    $password = password_hash($password, PASSWORD_DEFAULT);
   }
 
   if (empty(request('ssn'))) {
@@ -112,7 +113,7 @@ class AddAdminController extends Controller
     //Check whether the user exists
   $executor = new QueryExecutor();
 
-  $all_ssns = $executor->getALLUSSN();      
+  $all_ssns = $executor->getALLUSSN();
   $all_ssns = $this->proc_result($all_ssns);
 
   if (in_array($ssn, (array)$all_ssns['ssn']))

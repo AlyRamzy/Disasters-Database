@@ -54,6 +54,7 @@ class AddCriminalController extends Controller
 
   public function AddCriminal()
   {
+    $executor = new QueryExecutor();
   $degLossErr = $ssnErrN =$genderErr = $ageErr = $nameErr=$addressErr =  "";
   $ssn = $gender = $age = $address =$NoC= $State= $Nov= $name ="";
 

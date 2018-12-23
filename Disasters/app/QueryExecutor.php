@@ -19,6 +19,28 @@ class QueryExecutor extends Model
     }
   }
 
+  private function proc_result($data)
+  {
+    $fields = mysqli_fetch_fields($data);
+    $data_arr = array();
+
+    foreach ($fields as $value)
+    {
+      $data_arr[$value->name] = [];
+    }
+
+    while ($row = mysqli_fetch_assoc($data))
+    {
+      foreach ($data_arr as $key => $value)
+      {
+        $next = $row[$key];
+        array_push($value, $next);
+        $data_arr[$key] = $value;
+      }
+    }
+    return $data_arr;
+  }
+
   public function GetAllGovInfo($ssn)
   {
     $sql="SELECT * FROM person p,government_representative g WHERE p.ssn=g.ssn AND p.ssn=  '".$ssn."'";
@@ -34,11 +56,11 @@ class QueryExecutor extends Model
     }
 
   }
-  
+
  public function getALLUSSN()
  {
    $sql = " (select person.ssn from person, government_representative where person.ssn =  government_representative.ssn)
-      Union (select person.ssn from person, admin where person.ssn =  admin.ssn);
+      Union (select person.ssn from person, admin where person.ssn =  admin.ssn)
       Union (select person.ssn from person, citizen where person.ssn =  citizen.ssn );";
 
       if(mysqli_query($this->conn,$sql)){
@@ -53,7 +75,7 @@ class QueryExecutor extends Model
       }
 
  }
-  
+
   public function GetAllAdminInfo($ssn)
   {
     $sql="SELECT * FROM person p,admin d WHERE p.ssn=d.ssn AND p.ssn=  '".$ssn."'";
@@ -72,7 +94,7 @@ class QueryExecutor extends Model
   public function GetAllCitizenInfo($ssn)
   {
     $sql="SELECT * FROM person p,citizen c WHERE p.ssn=c.ssn AND p.ssn=  '".$ssn."'";
-    
+
     if(mysqli_query($this->conn,$sql)){
 
       $data= mysqli_query($this->conn,$sql);
@@ -280,7 +302,7 @@ class QueryExecutor extends Model
   public function GetAllUsers()
   {
     $sql="SELECT name,c.ssn FROM person p,citizen c WHERE p.ssn=c.ssn  ";
-  
+
     if(mysqli_query($this->conn,$sql)){
 
       $data= mysqli_query($this->conn,$sql);
@@ -331,7 +353,7 @@ class QueryExecutor extends Model
   {
     $sql="SELECT dics_id,question,answer,username,ssn,name FROM discussion d, citizen c , incident i WHERE d.citizen_ssn=c.ssn AND d.incident_id =i.id";
     if(mysqli_query($this->conn,$sql)){
-      
+
       $data= mysqli_query($this->conn,$sql);
       return ($data);
     }
@@ -345,7 +367,7 @@ class QueryExecutor extends Model
   {
     $sql=" UPDATE discussion SET answer='".$answer."', govn_ssn= ".$ssn." WHERE dics_id=".$id;
     if(mysqli_query($this->conn,$sql)){
-      
+
       echo "Answered Succesfully";
     }
     else{
@@ -368,12 +390,12 @@ class QueryExecutor extends Model
 
     }
   }
-  
+
   public function GetReports()
   {
     $sql="SELECT report_id FROM report  WHERE incident_id IS NULL";
     if(mysqli_query($this->conn,$sql)){
-      
+
       $data= mysqli_query($this->conn,$sql);
       return ($data);
     }
@@ -387,7 +409,7 @@ class QueryExecutor extends Model
   {
 
     $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , type , name ) VALUES ("
-          .$Eco_Loss .", '" 
+          .$Eco_Loss .", '"
           .$year ."', '"
           .$month ."', '"
           .$day ."', "
@@ -395,7 +417,7 @@ class QueryExecutor extends Model
           .$location ."', '"
           .$type . "', "
           .$name.")";
-    
+
     if(mysqli_query($this->conn,$sqlinc)){
       $sqlID="SELECT MAX(id) FROM incident";
 
@@ -437,7 +459,7 @@ class QueryExecutor extends Model
   {
     //return $type;
     $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , type , name ) VALUES ("
-          .$Eco_Loss .", '" 
+          .$Eco_Loss .", '"
           .$year ."', '"
           .$month ."', '"
           .$day ."', "
@@ -446,7 +468,7 @@ class QueryExecutor extends Model
           .$type . "', "
           .$name.")";
     if(mysqli_query($this->conn,$sqlinc)){
-      
+
       $sqlID="SELECT MAX(id) FROM incident";
 
 
@@ -467,7 +489,7 @@ class QueryExecutor extends Model
          $rep="UPDATE report SET incident_id =".$incid." WHERE report_id =".$rep_id. "";
          mysqli_query($this->conn,$rep);
          }
-         
+
          echo "Incident Added Successfully";
          return;
        }
@@ -516,7 +538,7 @@ public function InCidents()
   }
 
 }
-  
+
  //-----------------------------------------------------------------
 
 public function Citizens()
@@ -663,6 +685,7 @@ if (mysqli_query($this->conn, $sql)) {
   public function newAdmin($name , $username , $password , $gender , $address , $ssn , $age , $Assn)
   {
     $all_ssns = $this ->getALLSSN();
+    $all_ssns = $this->proc_result($all_ssns);
     if (!(in_array($ssn, (array)$all_ssns['ssn'])))
     {
     $sql1 = "Insert into person (ssn, name , gender , address) values ('" . $ssn . "', '" . $name . "', " . $gender . ", '" . $address . "' )";
@@ -690,7 +713,7 @@ if (mysqli_query($this->conn, $sql)) {
           }
 
   } else {
-    
+
       $sql = "Insert into Admin (ssn, username , password ) values ('" . $ssn . "', '" . $username ."' , '" . $password . "' )";
 
       if (mysqli_query($this->conn, $sql)) {

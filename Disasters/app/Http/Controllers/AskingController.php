@@ -8,6 +8,28 @@ use App\QueryExecutor;
 
 class AskingController extends Controller
 {
+  private function proc_result($data)
+  {
+    $fields = mysqli_fetch_fields($data);
+    $data_arr = array();
+
+    foreach ($fields as $value)
+    {
+      $data_arr[$value->name] = [];
+    }
+
+    while ($row = mysqli_fetch_assoc($data))
+    {
+      foreach ($data_arr as $key => $value)
+      {
+        $next = $row[$key];
+        array_push($value, $next);
+        $data_arr[$key] = $value;
+      }
+    }
+    return $data_arr;
+  }
+
   public function Add()
   {
     $executor = new QueryExecutor();
@@ -22,7 +44,7 @@ class AskingController extends Controller
     }
 
     $all_names = $executor->getIncName();
-    $all_names = mysqli_fetch_assoc($all_names);
+    $all_names = $this->proc_results($all_names);
 
     if (in_array($inc_name, (array)$all_names['name']))
     {

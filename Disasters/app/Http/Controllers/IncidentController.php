@@ -265,7 +265,8 @@ class IncidentController extends Controller
 
     if(!isset($_COOKIE['visibility'])) {
       return view('/DView' , ['ID' => (array)$data['id'] ,
-                                      'DName' =>(array)$data['name'],
+                                      'DName' =>(array)$data['type'],
+                                      'IName' =>(array)$data['name'],
                                       'Eco_losses' => (array)$data['eco_loss'] ,
                                       'Location' =>(array)$data['location'],
                                      'description' => (array)$data['description'] ,
@@ -332,7 +333,8 @@ class IncidentController extends Controller
         }
 
         return view('/DView' , ['ID' => (array)$data['id'] ,
-                                        'DName' =>(array)$data['name'],
+                                        'DName' =>(array)$data['type'],
+                                        'IName' =>(array)$data['name'],
                                         'Eco_losses' => $eco_arr ,
                                         'Location' => $loc_arr,
                                        'description' => $des_arr ,
