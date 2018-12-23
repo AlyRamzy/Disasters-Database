@@ -6,7 +6,7 @@
       <br>
       <h4><a href="Base_Admin">Add Admin</a></h4>
       <br>
-      <h4><a href="Main">View Previous Events</a></h4>
+      <h4><a href="Disaster_View">View Previous Events</a></h4>
       <br>
       <h4><a href="Visibility">Control Information Visibility</a></h4>
       <br>

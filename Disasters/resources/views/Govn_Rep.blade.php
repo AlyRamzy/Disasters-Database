@@ -18,14 +18,14 @@
       </h4>
       <br>
       <h4>
-        <form action="/Add_Casuality" method="get">
+        <form action="/Id_Names" method="post">
           {{ csrf_field() }}
           <button type="submit" name="add_casualty" value="add_casualty" class="btn-link" style="margin-top:12px"> Add Casualty</button>
         </form>
       </h4>
       <br>
       <h4>
-        <form action="/Add_Criminal" method="get">
+        <form action="/CId_Names" method="post">
           {{ csrf_field() }}
           <button type="submit" name="add_criminal" value="add_criminal" class="btn-link" style="margin-top:12px"> Add Criminal</button>
         </form>
@@ -34,16 +34,13 @@
       <h4>
         <form action="/Disaster_View" method="get">
           {{ csrf_field() }}
-          <button type="submit" name="view_report" value="view_report" class="btn-link" style="margin-top:12px"> View Previous Disasters</button>
+          <button type="submit" name="view_report" value="view_report" class="btn-link" style="margin-top:12px"> View Previous Events</button>
         </form>
       </h4>
       <br>
       <h4><a href="govn_rep_reports"> Reporting Tool</a></h4>
       <br>
-      <h4><a href="/Govn_View_Disc">Discussions </a></h4>
-      <br>
-      <h4><a href="/Profile_Govn_Rep">Personal Info</a></h4>
-      <br>
+      <h4><a href="/Govn_View_Disc"> Discussions </a></h4>
 </div>
 
     <div class="col-sm-8 text-left">

@@ -279,12 +279,12 @@ class LoginController extends Controller
     if (password_verify($old_password, $real_password))
     {
       echo "Incorrect Password";
-      return ('/change_password');
+      return view('/change_password');
     }
     else if ($new_password1 != $new_password2)
     {
       echo "Passwords don't match";
-      return ('/change_password');
+      return view('/change_password');
     }
 
     //Updating the password

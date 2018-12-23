@@ -2,19 +2,11 @@
 
 @section('content')
 <br>
-<h4><a href="">My Discussions</a></h4>
-<br>
-<h4><a href="">Recent Discussions</a></h4>
-<br>
 <h4><a href="Asking">Ask a question</a></h4>
-<br>
-<h4><a href="NEWS">Updated News</a></h4>
 <br>
 <h4><a href="Add_Report">Reporting</a></h4>
 <br>
-<h4><a href="Main">View Previous Events</a></h4>
-<br>
-<h4><a href="Profile_Citizent">Personal Info</a></h4>
+<h4><a href="Disaster_View">View Previous Events</a></h4>
 <br>
 
 </div>
