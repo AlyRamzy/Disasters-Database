@@ -1,5 +1,15 @@
 @extends('Govn_Rep')
 
+@section('img')
+style="background-image:url('{{asset('img/report1.jpg')}}');
+
+
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;"
+@endsection
+
 @section('content1')
 
       <h1>Reports Forum</h1>

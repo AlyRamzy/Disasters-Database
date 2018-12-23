@@ -3,7 +3,7 @@
 @section('content1')
 <style>
 .list-group{
-  
+
 height:700px;
 overflow-y: scroll;
 
@@ -39,7 +39,7 @@ overflow-y: scroll;
    @endforeach
   </select>
   <br><br>
- <h3 style="color:white; ">Type<select    name="disaster" style="margin-left:180px; color:white;" class="effect" ></h3>
+ <h3 style="color:white; ">Type<select    name="disaster" style="margin-left:180px; color:white; padding-left:200px;" class="effect" ></h3>
 
  @foreach ($disasters as $disaster)
     <h3 ><option style="background-color:darkred;" value="{{$disaster["name"]}}" >{{$disaster["name"]}}</option></h3>

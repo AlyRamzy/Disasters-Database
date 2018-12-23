@@ -38,9 +38,9 @@ style="background-image:url('{{asset('img/report.jpg')}}');
         <form method="post" action="/Asking">
           {{ csrf_field() }}
 
-          Enter the Incident Name:  <input type="text" name="in_name" style="margin-bottom:19px">
+          Enter the Incident Name:  <input type="text" name="in_name" style="margin-bottom:39px" class="effect">
 
-          <textarea class="form-control" type="text" name="question_txt" rows="3" placeholder="Enter your question here..." required></textarea>
+          <textarea type="text" name="question_txt" rows="13"  cols="150"  style="color:white;" class="effect" placeholder="Enter your question here..." required></textarea>
 
             <button type="submit" class="btn btn-success btn-primary" name="submit"  style="margin-top:30px; pading:15px; color:black">ِAdd question</button>
 

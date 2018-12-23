@@ -22,7 +22,7 @@ class DisasterPrecautionsController extends Controller
     $precaution =$executor->DPrecautions($DisasterName);
     $precaution = mysqli_fetch_assoc($precaution);
 
-        return view('/D_Precautions' , ['DPrecautions' =>  $precaution['precautions'],
-                                           'Dname' => $DisasterName ]);
+        return view('/D_Precautions' , ['DPrecautions' =>  $precaution['precautions'] ]);
+
   }
 }

@@ -7,8 +7,7 @@
 
 <div class="form-group" style="margin-top:17px">
 
-   <h4> Disaster Name : </h4>
-   <h5>{{  $Dname }} </h5>
+
     <p> {{ $DCauses }} </p>
 
   </div>
