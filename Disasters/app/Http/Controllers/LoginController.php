@@ -98,7 +98,7 @@ class LoginController extends Controller
       if (mysqli_num_rows($govInfo))
       {
         $govInfo = $this->proc_result($govInfo);
-        if ($password == $govInfo['password'][0])
+        if (password_verify($password, $govInfo['password'][0]))
         {
           $cookie_name = "user";
           $cookie_value = $govInfo['ssn'][0];
@@ -121,7 +121,7 @@ class LoginController extends Controller
       if (mysqli_num_rows($adminInfo))
       {
         $adminInfo = $this->proc_result($adminInfo);
-        if ($password == $adminInfo['password'][0])
+        if (password_verify($password, $adminInfo['password'][0]))
         {
           $cookie_name = "user";
           $cookie_value = $adminInfo['ssn'][0];
