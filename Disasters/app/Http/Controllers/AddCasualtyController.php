@@ -59,7 +59,7 @@ class AddCasualtyController extends Controller
   if (empty(request('name'))) {
     $nameErr = "Name is required";
     echo $nameErr;
-    return view('/Add_Casuality');
+    return $this->IncIDs();
   } else {
     $name = $this->test_input(request('name'));
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
@@ -72,7 +72,7 @@ class AddCasualtyController extends Controller
   if (empty(request('ssn'))) {
     $ssnErrN = "SSN is required";
     echo $ssnErrN;
-    return view('/Add_Casuality');
+    return $this->IncIDs();
   } else {
     $ssn = $this->test_input(request('ssn'));
     if (!is_numeric($ssn)) {

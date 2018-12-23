@@ -14,7 +14,7 @@
     box-shadow: 10px;
     border-color: eee;
     color:white;
-    padding:10px;
+    padding:20px;
 }
 </style>
 <div >
@@ -26,7 +26,7 @@
 
  <form @yield('action') method="POST">
  {{csrf_field()}}
- <h3 style="color:white; ">Type<select    name="disaster" style="margin-left:169px; color:white;" class="effect" ></h3>
+ <h3 style="color:white; ">Type<select    name="disaster" style="margin-left:169px; color:white; padding-left:180px" class="effect" ></h3>
  @foreach ($disasters as $disaster)
     <h3 ><option style="background-color:darkred;" value="{{$disaster["name"]}}" >{{$disaster["name"]}}</option></h3>
    @endforeach
@@ -42,7 +42,8 @@
 <br><br>
 @yield('Incident')
 <br>
-<input class="btn-lg btn-danger"  type="submit" value = "Add " style="text-align:center; margin-left:350px"  >
+<button type="submit" class="btn btn-success btn-primary" name="submit"  style="margin-top:10px; padding:12px; color:black; margin-left:450px">ِAdd Incident</button>
+
 <div >
 <ul>
 @foreach ($errors->all() as $error)

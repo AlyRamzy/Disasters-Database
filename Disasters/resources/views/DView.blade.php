@@ -3,67 +3,39 @@
 @section('content6')
 
 <br>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col"> Incident ID </th>
-      <th scope="col"> Name </th>
-      <th scope="col"> Economical Losses </th>
-      <th scope="col"> Incident location </th>
-      <th scope="col"> Incident Description</th>
-      <th scope="col"> year</th>
-      <th scope="col">  month</th>
-      <th scope="col">  Day</th>
-    </tr>
-  </thead>
-  <tbody>
 
-    <tr>
-      @foreach( $ID as $id )
+@for ($i = 0; $i < $n ; $i++)
+<div class="card">
 
-      <th scope="col"> {{ $id }} </th>
-      @endforeach
+  <div class="card-body" class="effect">
 
-      @foreach( $DName as $name )
+    <h6 class="card-title">Incident </h6>
 
-      <th scope="col"> {{ $name }} </th>
-      @endforeach
+   <p class="card-text"> {{ $IName[$i] }}</p>
 
-      @foreach( $Eco_losses as $losses )
+    <h6 class="card-title"> Disaster type </h6>
 
-      <th scope="col"> {{ $losses }} </th>
-      @endforeach
+   <p class="card-text"> {{ $DName[$i] }}</p>
 
-      @foreach( $Location as $L )
+   <h6 class="card-title"> Economical Losses  </h6>
 
-      <th scope="col"> {{ $L }} </th>
-      @endforeach
+  <p class="card-text"> {{ $Eco_losses[$i] }}</p>
 
-      @foreach( $description as $Desc )
+    <h6 class="card-title">Incident location  </h6>
 
-      <th scope="col"> {{ $Desc }} </th>
-      @endforeach
+    <p class="card-text"> {{ $Location[$i] }}</p>
 
-      @foreach( $year as $Y )
+    <h6 class="card-title">Incident Description </h6>
 
-      <th scope="col"> {{ $Y }} </th>
-      @endforeach
+   <p class="card-text"> {{ $description[$i] }}</p>
 
-      @foreach( $month as $M )
+    <h6 class="card-title">Date </h6>
 
-      <th scope="col"> {{ $M }} </th>
-      @endforeach
+   <p class="card-text"> {{ $year[$i] }}  . "-" . {{ $month[$i] }}  . "-" . {{ $day[$i] }} </p>
 
-      @foreach( $day as $Days )
-
-      <th scope="col"> {{ $Days }} </th>
-      @endforeach
-
-    </tr>
-
-    </tbody>
-
-    </table>
+   </div>
+   </div>
+     @endfor
 
 
 @endsection

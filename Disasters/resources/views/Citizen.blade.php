@@ -17,13 +17,6 @@
 <h4><a href="Profile_Citizent">Personal Info</a></h4>
 <br>
 
-<div class="input-group" style="margin-left:11px" >
- <input type="text" class="form-control" style="padding:20px" placeholder="Disaster Name..">
-</div>
-<div class="input-group" style="margin:18px" >
-<button type="submit" class="btn btn-success" style="padding:9px">Search</button>
-</div>
-
 </div>
 <div class="col-sm-8 text-left">
 

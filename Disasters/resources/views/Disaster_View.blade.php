@@ -1,9 +1,7 @@
 @extends('Base')
 
-@extends('Base')
-
 @section('img')
-style="background-image:url('{{asset('img/casualty.jpg')}}');
+style="background-image:url('{{asset('img/Causes.jpg')}}');
 
 
 
@@ -52,12 +50,16 @@ style="background-image:url('{{asset('img/casualty.jpg')}}');
     <button type="submit" class="btn btn-success" style="padding:10px">Search</button>
   </div>
     </form>
+
     </div>
+
     </div>
     <div class="col-sm-8 text-left">
-      <h1 style="text-align:center; color:white; border-radius:50px 0px;">Search for a specific incident  </h1>
+      <h1 style="text-align:center; color:blue; border-radius:50px 0px;">Search for a specific incident  </h1>
+
         @yield('content6')
     </div>
+
     <div class="col-sm-2 sidenav">
 
     </div>

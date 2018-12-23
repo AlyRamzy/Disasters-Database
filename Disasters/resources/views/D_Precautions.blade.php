@@ -2,11 +2,14 @@
 
 @section('content4')
 
-<h4>All Possible Precautions of the Disaster </h4>
+<h3 >All Possible Precautions of the Disaster </h3>
+<br>
 
 <div class="form-group" style="margin-top:17px">
 
-    <textarea class="form-control" type="text" name="rep_txt" required> {{ $DPrecautions }}</textarea>
+  <h4> Disaster Name : </h4>
+  <h5>{{  $Dname }} </h5>
+    <p> {{ $DPrecautions }}</p>
 
   </div>
 

@@ -38,6 +38,7 @@
 </html>
 <body>
   <nav class="navbar navbar-inverse" >
+      <a class="navbar-brand" style= " margin-left:15px"> Disasters </a>
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -45,6 +46,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right" style="margin-right:12px">
+
           <form action="/logout" method="post">
             {{ csrf_field() }}
             <button type="submit" name="logout" value="logout" class="btn-link" style="margin-top:12px"><span class="glyphicon glyphicon-log-out"></span> LogOut</button>

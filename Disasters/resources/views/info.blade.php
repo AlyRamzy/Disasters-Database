@@ -1,7 +1,7 @@
 @extends('Base')
 
 @section('img')
-style="background-image:url('{{asset('img/casualty.jpg')}}');
+style="background-image:url('{{asset('img/Causes.jpg')}}');
 
 
 
@@ -30,6 +30,16 @@ style="background-image:url('{{asset('img/casualty.jpg')}}');
 </style>
 
 
+
+
+    </div>
+    <div class="col-sm-8 text-left">
+
+    @yield('content4')
+
+    </div>
+    <div class="col-sm-2 sidenav">
+
       <div class="input-group" >
 
         <form method="post" action="/info_cause">
@@ -42,14 +52,6 @@ style="background-image:url('{{asset('img/casualty.jpg')}}');
       </form>
 
      </div>
-
-    </div>
-    <div class="col-sm-8 text-left">
-
-    @yield('content4')
-
-    </div>
-    <div class="col-sm-2 sidenav">
 
       <div class="input-group" >
 

@@ -1,11 +1,11 @@
 @extends('Base')
 
 @section('img')
-style="background-image:url('{{asset('img/casualty.jpg')}}');
+style="background-image:url('{{asset('img/Causes.jpg')}}');
 
 
 
-  background-position: left;
+  background-position: up;
   background-repeat: no-repeat;
   background-size: cover;"
 @endsection

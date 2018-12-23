@@ -34,7 +34,24 @@ class QueryExecutor extends Model
     }
 
   }
+ public function getALLUSSN()
+ {
+   $sql = " (select person.ssn from person, government_representative where person.ssn =  government_representative.ssn)
+      Union (select person.ssn from person, admin where person.ssn =  admin.ssn);
+      Union (select person.ssn from person, citizen where person.ssn =  citizen.ssn );";
 
+      if(mysqli_query($this->conn,$sql)){
+
+        $data= mysqli_query($this->conn,$sql);
+        return ($data);
+      }
+      else{
+        echo "Error "."<br>". mysqli_error($this->conn);
+        return;
+
+      }
+
+ }
   public function GetAllAdminInfo($ssn)
   {
     $sql="SELECT * FROM person p,admin d WHERE p.ssn=d.ssn AND p.ssn=  ".$ssn;
@@ -401,7 +418,7 @@ class QueryExecutor extends Model
 
 public function HInCidents()
 {
-  $sql = "select id , name from Incident , human_made where human_made.id = Incident.id ; ";
+  $sql = "select Incident.id , Incident.name from Incident , human_made where human_made.id = Incident.id ; ";
 
   if (mysqli_query($this->conn, $sql)) {
 
@@ -576,7 +593,9 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function newAdmin($name , $username , $password , $gender , $address , $ssn , $age , $Assn)
   {
-
+    $all_ssns = $this ->getALLSSN();
+    if (!(in_array($ssn, (array)$all_ssns['ssn'])))
+    {
     $sql1 = "Insert into person (ssn, name , gender , address) values ('" . $ssn . "', '" . $name . "', " . $gender . ", '" . $address . "' )";
     $sql2 = "Insert into Admin (ssn, username , password ) values ('" . $ssn . "', '" . $username ."' , '" . $password . "' )";
     if (mysqli_query($this->conn, $sql1)) {
@@ -600,8 +619,29 @@ if (mysqli_query($this->conn, $sql)) {
               echo "Error: " . $sql1 . "<br>" . mysqli_error($this->conn);
 
           }
+
+  } else {
+    
+      $sql = "Insert into Admin (ssn, username , password ) values ('" . $ssn . "', '" . $username ."' , '" . $password . "' )";
+
+      if (mysqli_query($this->conn, $sql)) {
+                echo "New record created successfully";
+                $sql = " update admin SET no_added_admins = no_added_admins + 1 where ssn = '" . $Assn . "' ;";
+
+                if(mysqli_query($this ->conn, $sql))
+                {
+                    echo "data selected successfully";
+                    return;
+                  } else { echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                               return;}
+
+      } else {
+              echo "Error: " . $sql2 . "<br>" . mysqli_error($this->conn);
+
+    }
   }
 
+}
 //----------------------------------------------------------------------
 
   public function DCauses($name )
@@ -751,7 +791,7 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function AllDate( $year , $month , $day )
   {
-      $sql = "select * from incident where year = '" . $year . "' , month = '" . $month . "' , day = '" . $day . "';";
+      $sql = "select * from incident where year = '" . $year . "' and month = '" . $month . "' and day = '" . $day . "';";
 
 
     if (mysqli_query($this->conn, $sql)) {
@@ -775,7 +815,7 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function DMonth( $month , $day )
   {
-      $sql = "select * from incident where month = '" . $month . "' , day = '" . $day . "';";
+      $sql = "select * from incident where month = '" . $month . "' and day = '" . $day . "';";
 
 
     if (mysqli_query($this->conn, $sql)) {
@@ -799,7 +839,7 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function Dyear( $year , $day )
   {
-    $sql = "select * from incident where year = '" . $year . "' , day = '" . $day . "';";
+    $sql = "select * from incident where year = '" . $year . "' and day = '" . $day . "';";
 
 
     if (mysqli_query($this->conn, $sql)) {
@@ -823,7 +863,7 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function Myear( $year , $month )
   {
-    $sql = "select * from incident where year = '" . $year . "' , month = '" . $month . "';";
+    $sql = "select * from incident where year = '" . $year . "' and month = '" . $month . "';";
 
 
     if (mysqli_query($this->conn, $sql)) {

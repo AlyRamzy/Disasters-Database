@@ -8,7 +8,7 @@ use App\QueryExecutor;
 
 class IncidentController extends Controller
 {
-  
+
     private function proc_result($data)
       {
         $fields = mysqli_fetch_fields($data);
@@ -36,14 +36,14 @@ class IncidentController extends Controller
     {
         $exec =new QueryExecutor();
         $disasters=$exec->GetDisasters();
-        
+
         return view ('/Human_Made',compact('disasters'));//['disasters'=>$dis]);
     }
     public function natural()
     {
         $exec =new QueryExecutor();
         $disasters=$exec->GetDisasters();
-        
+
         return view ('/Natural',compact('disasters'));//['disasters'=>$dis]);
     }
 
@@ -56,7 +56,7 @@ class IncidentController extends Controller
             'disaster'=>'required'
 
         ]);
-        
+
         $Eco_Loss=request('Economical');
         if (empty($Eco_Loss))
         {
@@ -93,18 +93,18 @@ class IncidentController extends Controller
         else{
             $phy_parm="'".$phy_parm."'";
         }
- 
+
         $thedate = explode("-", $date);
- 
-     
-        $year = $thedate[0]; 
-        $month = $thedate[1]; 
-        $day= $thedate[2]; 
- 
+
+
+        $year = $thedate[0];
+        $month = $thedate[1];
+        $day= $thedate[2];
+
         $exec =new QueryExecutor();
         $disasters=$exec->InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$name,$Freq,$phy_parm);
-         
-        
+
+
         return $this->natural();
     }
 
@@ -144,21 +144,21 @@ class IncidentController extends Controller
            $causes='NULL';
 
        }
-       else 
+       else
        {
            $causes="'".$causes."'";
        }
 
        $thedate = explode("-", $date);
 
-    
-       $year = $thedate[0]; 
-       $month = $thedate[1]; 
-       $day= $thedate[2]; 
+
+       $year = $thedate[0];
+       $month = $thedate[1];
+       $day= $thedate[2];
 
        $exec =new QueryExecutor();
        $disasters=$exec->InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$name,$causes);
-        
+
        // return view ('/Natural',compact('disasters'));//['disasters'=>$dis]);
        return $this->humanmade();
     }
@@ -212,15 +212,17 @@ class IncidentController extends Controller
     {
       return view('/Disaster_View');
     }
+    $num =  mysqli_num_rows($data);
     $data =  $this->proc_result($data);
 
-    return view('/DView' , ['ID' => (array)$data['id'] ,
-                                    'DName' =>(array)$data['name'],
+    return view('/DView' , ['DName' => (array)$data['type'] ,
+                                    'IName' =>(array)$data['name'],
                                     'Eco_losses' => (array)$data['eco_loss'] ,
                                     'Location' =>(array)$data['location'],
                                    'description' => (array)$data['description'] ,
                                    'year' => (array)$data['year'] ,
                                    'month' => (array)$data['month'] ,
-                                   'day' => (array)$data['day']  ]) ;
+                                   'day' => (array)$data['day'] ,
+                                   'n' => $num ]) ;
   }
 }

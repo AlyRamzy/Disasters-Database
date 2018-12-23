@@ -29,6 +29,7 @@
       <br>
       <h4><a href="/Profile_Govn_Rep">Personal Info</a></h4>
       <br>
+</div>
 
     <div class="col-sm-8 text-left">
     @yield('content1')
