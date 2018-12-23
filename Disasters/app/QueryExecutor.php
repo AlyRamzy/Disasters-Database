@@ -169,16 +169,17 @@ class QueryExecutor extends Model
 
     }
   }
-  public function InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$name,$causes,$rep_id)
+  public function InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$type,$causes,$rep_id,$name)
   {
-    $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , name ) VALUES ("
+    $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , type , name ) VALUES ("
           .$Eco_Loss .", '" 
           .$year ."', '"
           .$month ."', '"
           .$day ."', "
           .$description . ", '"
           .$location ."', '"
-          .$name . "')";
+          .$type . "', "
+          .$name.")";
     if(mysqli_query($this->conn,$sqlinc)){
       $sqlID="SELECT MAX(id) FROM incident";
       
@@ -192,6 +193,8 @@ class QueryExecutor extends Model
        .$causes .")";
        if(mysqli_query($this->conn,$sqlhuman))
        {
+        $sqldis = " update disaster SET no_of_prev_occur = no_of_prev_occur + 1 where name = '" . $type . "' ;";
+        mysqli_query($this->conn,$sqldis);
         if($rep_id!=-1)
         {
         $rep="UPDATE report SET incident_id =".$incid." WHERE report_id =".$rep_id. "";
@@ -212,17 +215,20 @@ class QueryExecutor extends Model
     }
   }
 
-  public function InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$name,$Freq,$physical_parm,$rep_id)
+  public function InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$type,$Freq,$physical_parm,$rep_id,$name)
   {
-    $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , name ) VALUES ("
+    //return $type;
+    $sqlinc="INSERT INTO incident (eco_loss, year , month , day , description , location , type , name ) VALUES ("
           .$Eco_Loss .", '" 
           .$year ."', '"
           .$month ."', '"
           .$day ."', "
           .$description . ", '"
           .$location ."', '"
-          .$name . "')";
+          .$type . "', "
+          .$name.")";
     if(mysqli_query($this->conn,$sqlinc)){
+      
       $sqlID="SELECT MAX(id) FROM incident";
       
       
@@ -235,6 +241,8 @@ class QueryExecutor extends Model
        .$physical_parm .")";
        if(mysqli_query($this->conn,$sqlnatural))
        {
+        $sqldis = " update disaster SET no_of_prev_occur = no_of_prev_occur + 1 where name = '" . $type . "' ;";
+        mysqli_query($this->conn,$sqldis);
          if($rep_id!=-1)
          {
          $rep="UPDATE report SET incident_id =".$incid." WHERE report_id =".$rep_id. "";

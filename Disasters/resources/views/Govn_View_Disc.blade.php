@@ -1,7 +1,17 @@
 @extends ('Govn_Rep')
 
 @section('content1')
+<style>
+.list-group{
+  
+  height:870px;
+  overflow-y: scroll;
+  
+  }
+</style>
+<div class="list-group">
 @for ($x=0;$x<count($disc['ssn']);$x++)
+
 
 <div class="panel-group" id="accordion">
 
@@ -47,6 +57,8 @@
     </div>
     
 </div>
+
 @endfor
+</div>
 
 @endsection
