@@ -69,6 +69,10 @@ Route::get('/Add_Report', function () {
     return view('Add_Report');
 });
 
+Route::get('/Review_Reports', function () {
+    return view('Review_Reports');
+});
+
 Route::get('/Asking', function () {
     return view('Asking');
 });
@@ -79,6 +83,10 @@ Route::get('/Govn_Rep', function () {
 
 Route::get('/change_password', function () {
     return view('change_password');
+});
+
+Route::get('/Visibility', function () {
+    return view('Visibility');
 });
 
 //--------------------------------------------------------------------------------------------------
@@ -97,4 +105,10 @@ Route::post('/logout', 'LoginController@LogOut');
 
 Route::post('/profile', 'BasicController@ViewProf');
 
-Route::post('/main_menu', 'BasicController@MMenuRet');
+Route::post('/main_menu', 'ReportController@viewOverallReport');
+
+Route::post('/Review_Reports', 'ReviewReportController@GetReports');
+
+Route::post('/Get_Reviewed', 'ReviewReportController@ReviewReport');
+
+Route::post('/toggle_visible', 'VisibilityController@Toggle');

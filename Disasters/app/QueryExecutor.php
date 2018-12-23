@@ -171,7 +171,46 @@ class QueryExecutor extends Model
         }
       }
     }
-    }
+  }
+
+  public function GetReports()
+  {
+      $sql = "Select report_id, content From report";
+      if (mysqli_query($this->conn, $sql)) {
+          $data = mysqli_query($this->conn, $sql);
+          return ($data);
+      } else {
+          echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+          return;
+      }
+  }
+
+  public function TrustReport($id, $gov_ssn)
+  {
+      $sql = "Update report Set govn_ssn = '".$gov_ssn."' Where report_id = ".$id;
+      if (mysqli_query($this->conn, $sql)) {
+          echo "Updated successfully";
+          $sql = "Select citizen_ssn From report where report_id = ".$id;
+          if (mysqli_query($this->conn, $sql)) {
+              $data = mysqli_query($this->conn, $sql);
+              $data = mysqli_fetch_assoc($data);
+              $data = $data['citizen_ssn'];
+              $sql = "Update Citizen Set trust_level = trust_level + 1 Where ssn = '".$data."'";
+              if (mysqli_query($this->conn, $sql)) {
+                  echo "Trust Level Increased";
+              } else {
+                  echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+                  return;
+              }
+          } else {
+              echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+              return;
+          }
+      } else {
+          echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+      }
+  }
+
   function __destruct()
   {
     mysqli_close($this->conn);

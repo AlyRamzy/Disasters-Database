@@ -8,6 +8,8 @@
       <br>
       <h4><a href="Main">View Previous Events</a></h4>
       <br>
+      <h4><a href="Visibility">Control Information Visibility</a></h4>
+      <br>
     </div>
     <div class="col-sm-8 text-left">
 
