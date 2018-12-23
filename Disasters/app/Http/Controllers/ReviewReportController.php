@@ -33,7 +33,7 @@ class ReviewReportController extends Controller
     public function GetReports()
     {
       $executor = new QueryExecutor();
-      $data = $executor->GetReports();
+      $data = $executor->GetReportsInfo();
       $n = mysqli_num_rows($data);
       $reports = $this->proc_result($data);
       $ids = $reports['report_id'];
