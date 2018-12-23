@@ -37,7 +37,9 @@ class IncidentController extends Controller
         $exec =new QueryExecutor();
         $disasters=$exec->GetDisasters();
 
-        return view ('/Human_Made',compact('disasters'));//['disasters'=>$dis]);
+        $reports=$exec->GetReports();
+        
+        return view ('/Human_Made',compact('disasters'),compact('reports'));//['disasters'=>$dis])
     }
 
     public function natural()
@@ -45,7 +47,9 @@ class IncidentController extends Controller
         $exec =new QueryExecutor();
         $disasters=$exec->GetDisasters();
 
-        return view ('/Natural',compact('disasters'));//['disasters'=>$dis]);
+        $reports=$exec->GetReports();
+        
+        return view ('/Natural',compact('disasters'),compact('reports'));//['disasters'=>$dis]);
     }
 
     public function Addnatural()
@@ -54,9 +58,16 @@ class IncidentController extends Controller
 
             'Date'=>'required',
             'Location'=>'required',
-            'disaster'=>'required'
+            'disaster'=>'required',
+            'name'=>'required'
 
         ]);
+
+        $report_id= request('report');
+        if (empty($report_id))
+        {
+            $report_id=-1;
+        }
 
         $Eco_Loss=request('Economical');
         if (empty($Eco_Loss))
@@ -78,7 +89,17 @@ class IncidentController extends Controller
             $description="'".$description."'";
         }
         $location=request('Location');
-        $name=request('disaster');
+        $type=request('disaster');
+        $name=request('name');
+        if (empty($name))
+        {
+            $name='NULL';
+
+        }
+        else{
+            $name="'".$name."'";
+        }
+        
         $Freq=request('Frequency');
         if (empty($Freq))
         {
@@ -103,9 +124,11 @@ class IncidentController extends Controller
         $day= $thedate[2];
 
         $exec =new QueryExecutor();
-        $disasters=$exec->InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$name,$Freq,$phy_parm);
 
-
+        $disasters=$exec->InsertNatural($Eco_Loss,$year,$month,$day,$description,$location,$type,$Freq,$phy_parm,$report_id,$name);
+         
+        //return $disasters;
+      
         return $this->natural();
     }
 
@@ -115,8 +138,14 @@ class IncidentController extends Controller
 
             'Date'=>'required',
             'Location'=>'required',
-            'disaster'=>'required'
+            'disaster'=>'required',
+            'name'=>'required'
         ]);
+        $report_id= request('report');
+        if (empty($report_id))
+        {
+            $report_id=-1;
+        }
        $Eco_Loss=request('Economical');
        if (empty($Eco_Loss))
         {
@@ -137,8 +166,17 @@ class IncidentController extends Controller
        {
            $description="'".$description."'";
        }
+       $name=request('name');
+        if (empty($name))
+        {
+            $name='NULL';
+
+        }
+        else{
+            $name="'".$name."'";
+        }
        $location=request('Location');
-       $name=request('disaster');
+       $type=request('disaster');
        $causes=request('Causes');
        if (empty($causes))
        {
@@ -158,7 +196,8 @@ class IncidentController extends Controller
        $day= $thedate[2];
 
        $exec =new QueryExecutor();
-       $disasters=$exec->InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$name,$causes);
+
+       $disasters=$exec->InsertHumanMade($Eco_Loss,$year,$month,$day,$description,$location,$type,$causes,$report_id,$name);
 
        // return view ('/Natural',compact('disasters'));//['disasters'=>$dis]);
        return $this->humanmade();

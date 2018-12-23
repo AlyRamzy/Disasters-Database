@@ -39,6 +39,8 @@
       <br>
       <h4><a href="govn_rep_reports"> Reporting Tool</a></h4>
       <br>
+      <h4><a href="/Govn_View_Disc">Discussions </a></h4>
+      <br>
     </div>
     <div class="col-sm-8 text-left">
 
