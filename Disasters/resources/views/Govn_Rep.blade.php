@@ -37,7 +37,7 @@
         </form>
       </h4>
       <br>
-      <h4><a href="/Profile_Govn_Rep">Personal Info</a></h4>
+      <h4><a href="govn_rep_reports"> Reporting Tool</a></h4>
       <br>
     </div>
     <div class="col-sm-8 text-left">
@@ -45,7 +45,7 @@
     @yield('content1')
 
     </div>
-    
+
     </div>
 
 
