@@ -1,41 +1,65 @@
 @extends('Admin')
-
+@section('img')
+style="background-image:url('{{asset('img/shutterstock_586784021(1).jpg')}}'); 
+  
+  
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;"
+@endsection
 @section('content1')
+<style>
 
-<div class="container">
+.effect{
+  border-radius: 50px 0px;
+    background: transparent;
+    border: 0px;
+    border-bottom: 12px;
+    border-color: #ddd;
+    border-color: #B1B1B9;
+    box-shadow: 6px 10px 16px 11px;
+    box-shadow: 10px;
+    border-color: eee;
+    color:white;
+    padding:10px;
+}
+</style>
 
-<h1 class="alert alert-danger">Remove User From The Site  </h1>
-<?php
-$SSN=$SSNERROR="";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["SSN"])) {
-      $nameErr = "SSN is required";
-    } else {
-      $name = test_input($_POST["SSN"]);
-      // check if name only contains letters and whitespace
-      if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-        $nameErr = "Wrong Format OF SSN ";
-      }
+
+<div  >
+
+<h1 style="text-align:center; color:white; border-radius:50px 0px;">Remove User From The Site  </h1>
+
+<h3 style="text-align:center; color:white; border-radius:50px 0px;">Please Choose The User You Want To Remove</h3>
+
+<form method="post" style="margin-top:30px c" action="Remove_Users">
+{{csrf_field()}}
+<br><br><br><br>
+<h3 style="color:white; margin-left:169px;">User<select   name="user" style="margin-left:169px; color:white;" class="effect" ></h3>
+   
+    @for($x=0;$x<count($users['name']);$x++)
+    {
+    <h3 ><option style="background-color:darkred;" value="{{$users['ssn'][$x]}}" >{{$users['name'][$x]}} : {{$users['ssn'][$x]}}</option></h3>
     }
-}
+    @endfor
+    
+  </select>
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-?>
-<h2>Please Enter The User SSN</h2>
+  <br><br><br><br>
+  <input class="btn-lg btn-danger" value="Remove" type="submit" style="text-align:center; margin-left:200px"  >
 
-<form method="post" style="margin-top:30px" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-  SSN: <input type="text" name="SSN" value="<?php echo $SSN;?>">
-  <span class="error"> <?php echo $SSNERROR;?></span>
-  <br><br>
-  <input type="submit" name="submit" style="margin-left:30px" value="Submit">
+  <div >
+<ul>
+@foreach ($errors->all() as $error)
+<h5 class="alert alert-danger">{{$error}}</h5>
+@endforeach
+</ul>
 
+</div>
   </form>
+  
 </div>
 
 @endsection
