@@ -23,7 +23,7 @@ create table Incident
     name varchar(20),
     type varchar(20),
     primary key (id),
-    foreign key (name) references Disaster(name)
+    foreign key (type) references Disaster(name)
     on delete set null on update cascade
   );
 

@@ -13,7 +13,7 @@ class OverallReport extends \koolreport\KoolReport
     {
         return array(
             "dataSources"=>array(
-                "stats"=>array(
+                "disasters"=>array(
                     "connectionString"=>"mysql:host=localhost;dbname=disasters",
                     "username"=>"root",
                     "password"=>"",
@@ -25,16 +25,28 @@ class OverallReport extends \koolreport\KoolReport
 
     public function setup()
     {
-        $this->src('stats')
-        ->query("SELECT name, eco_loss, type FROM Incident")
+        $this->src('disasters')
+        ->query("SELECT name, no_of_crimes FROM person p, criminal c WHERE p.ssn = c.ssn")
+        ->pipe(new Sort(array(
+            "no_of_crimes"=>"desc"
+        )))
+        ->pipe($this->dataStore('criminal'));
+
+        $this->src('disasters')
+        ->query("SELECT name, deg_of_loss FROM person p, casualty c WHERE p.ssn = c.ssn")
+        ->pipe(new Sort(array(
+            "deg_of_loss"=>"desc"
+        )))
+        ->pipe($this->dataStore('casualty'));
+
+        $this->src('disasters')
+        ->query("SELECT name, type, eco_loss FROM incident")
         ->pipe(new Group(array(
-            "by"=>"type",
-            "sum"=>"eco_loss"
+            "by"=>"type"
         )))
         ->pipe(new Sort(array(
             "eco_loss"=>"desc"
         )))
-        ->pipe(new Limit(array(10)))
         ->pipe($this->dataStore('incident'));
     }
 }

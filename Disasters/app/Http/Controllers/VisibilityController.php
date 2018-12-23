@@ -18,5 +18,7 @@ class VisibilityController extends Controller
       $vis_arr = array("eco_loss"=>$eco_loss, "year"=>$year, "month"=>$month, "day"=>$day, "description"=>$description, "location"=>$location);
 
       setcookie('visibility', $vis_arr, time() + (86400 * 30), "/");
+
+      return view('/Visibility');
     }
 }
