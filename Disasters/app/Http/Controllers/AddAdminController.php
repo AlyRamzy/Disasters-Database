@@ -88,7 +88,7 @@ class AddAdminController extends Controller
   if (empty(request('address'))) {
     $address = 'null';
   } else {
-    $address = $this->test_input(request('address'));
+    $address = "'".$this->test_input(request('address'))."'";
     if (!preg_match("/^[0-9a-zA-Z ]*$/",$name)) {
       $addressErr = "Only letters and white space and Numbers allowed";
       echo $addressErr;

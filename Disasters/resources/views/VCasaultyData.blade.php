@@ -26,7 +26,7 @@
 
  <h6 class="card-title">Date </h6>
 
-<p class="card-text"> {{ $year[$i] }}  . "-" . {{ $month[$i] }}  . "-" . {{ $day[$i] }} </p>
+<p class="card-text"> {{ $year[$i] }} - {{ $month[$i] }} - {{ $day[$i] }} </p>
 
 </div>
 </div>

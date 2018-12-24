@@ -19,11 +19,6 @@ Route::get('/Cas_Crim_Base', function () {
     return view('Cas_Crim_Base');
 });
 
-Route::get('/Human_Made','IncidentController@humanmade');
-Route::post('/Human_Made','IncidentController@Addhumanmade');
-Route::get('/Natural','IncidentController@natural');
-Route::post('/Natural','IncidentController@Addnatural');
-
 Route::get('/Add_Criminal', function () {
     return view('Add_Criminal');
 });
@@ -71,15 +66,6 @@ Route::get('/D_Precautions', function () {
 Route::get('/Admin', function () {
     return view('Admin');
 });
-
-Route::get('/Profile_Govn_Rep','Profile@GovRep');
-Route::get('/Profile_Admin','Profile@Admin');
-Route::get('/Profile_Citizent','Profile@Citizent');
-
-
-Route::post('/Remove_Users','RemoveUser@Remove');
-Route::get('/Remove_Users','RemoveUser@MakeViewRemove');
-Route::get('/Govn_View_Disc','Govn_Disc@ViewDisc');
 
 Route::get('/Add_Admin', function () {
     return view('Add_Admin');
@@ -132,6 +118,11 @@ Route::get('/govn_rep_reports', function () {
 Route::get('/Human_Made','IncidentController@humanmade');
 Route::get('/Natural','IncidentController@natural');
 Route::get('/Remove_Users','RemoveUser@MakeViewRemove');
+Route::get('/Profile_Govn_Rep','Profile@GovRep');
+Route::get('/Profile_Admin','Profile@Admin');
+Route::get('/Profile_Citizent','Profile@Citizent');
+Route::get('/Remove_Users','RemoveUser@MakeViewRemove');
+Route::get('/Govn_View_Disc','Govn_Disc@ViewDisc');
 
 //--------------------------------------------------------------------------------------------------
 
@@ -196,3 +187,5 @@ Route::post('/user_report', 'ReportController@viewUserReport');
 Route::post('/incident_report', 'ReportController@viewIncidentReport');
 
 Route::post('/recent_report', 'ReportController@viewRecentEventReport');
+
+Route::post('/Remove_Users','RemoveUser@Remove');

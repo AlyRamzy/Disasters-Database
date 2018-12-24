@@ -126,11 +126,13 @@ class QueryExecutor extends Model
   public function AddCriminals($name, $gender , $address , $ssn , $age , $NoC , $State , $Nov ,   $inc_Id)
   {
     $allSSNs = $this->getALLSSN();
+    $allSSNs = $this->proc_result($allSSNs);
     $CSSNs = $this ->AllCriminals();
+    $CSSNs = $this->proc_result($CSSNs);
 
-    if (in_array($ssn, (array)$allSSNs))
+    if (in_array($ssn, (array)$allSSNs['ssn']))
     {
-      if (in_array($ssn, (array)$CSSNs))
+      if (in_array($ssn, (array)$CSSNs['ssn']))
       {
         $sql = "select * from criminal_hm_incident where hm_incident_id  = '" .  $inc_Id .  "' and criminal_ssn = '" . $ssn . "' );";
 
@@ -222,10 +224,12 @@ class QueryExecutor extends Model
   public function AddC($name, $gender , $address , $ssn , $age , $deg ,   $inc_Id)
   {
     $allSSNs = $this->getALLSSN();
+    $allSSNs = $this->proc_result($allSSNs);
     $CSSNs = $this ->ALLCasualty();
-    if (in_array($ssn, (array)$allSSNs))
+    $CSSNs = $this->proc_result($CSSNs);
+    if (in_array($ssn, (array)$allSSNs['ssn']))
     {
-      if (in_array($ssn, (array)$CSSNs))
+      if (in_array($ssn, (array)$CSSNs['ssn']))
       {
         $sql = "select * from casualty_incident where incident_id = '" .  $inc_Id .  "' and casualty_ssn = '" . $ssn . "' );";
 
@@ -688,7 +692,7 @@ if (mysqli_query($this->conn, $sql)) {
     $all_ssns = $this->proc_result($all_ssns);
     if (!(in_array($ssn, (array)$all_ssns['ssn'])))
     {
-    $sql1 = "Insert into person (ssn, name , gender , address) values ('" . $ssn . "', '" . $name . "', " . $gender . ", '" . $address . "' )";
+    $sql1 = "Insert into person (ssn, name , gender , address) values ('" . $ssn . "', '" . $name . "', " . $gender . ", " . $address . " )";
     $sql2 = "Insert into Admin (ssn, username , password ) values ('" . $ssn . "', '" . $username ."' , '" . $password . "' )";
     if (mysqli_query($this->conn, $sql1)) {
 
@@ -906,7 +910,7 @@ if (mysqli_query($this->conn, $sql)) {
 
   public function DMonth( $month , $day )
   {
-     $sql = "select * from incident where month = " . $month . " and day ='" . $day . ";";
+     $sql = "select * from incident where month = " . $month . " and day =" . $day . ";";
 
 
     if (mysqli_query($this->conn, $sql)) {

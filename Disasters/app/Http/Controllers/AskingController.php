@@ -44,7 +44,7 @@ class AskingController extends Controller
     }
 
     $all_names = $executor->getIncName();
-    $all_names = $this->proc_results($all_names);
+    $all_names = $this->proc_result($all_names);
 
     if (in_array($inc_name, (array)$all_names['name']))
     {

@@ -263,7 +263,7 @@ class IncidentController extends Controller
 
     $data =  $this->proc_result($data);
 
-    if(!isset($_COOKIE['visibility'])) {
+    if(!isset($_COOKIE['eco_loss'])) {
       return view('/DView' , ['ID' => (array)$data['id'] ,
                                       'DName' =>(array)$data['type'],
                                       'IName' =>(array)$data['name'],
@@ -275,60 +275,82 @@ class IncidentController extends Controller
                                      'day' => (array)$data['day'] ,
                                       'n' => $num] ) ;
     } else {
-        $visibile = $_COOKIE['visibility'];
-        $n = mysqli_num_rows($data);
 
-        $eco_arr = array();
-        if ($visible['eco_loss'])
-        {
-          for ($i = 0; $i < $n ; $i++)
+        $eco_arr = $data['eco_loss'];
+        if(isset($_COOKIE['eco_loss'])) {
+          $eco_loss = $_COOKIE['eco_loss'];
+          $eco_arr = array();
+          if ($eco_loss)
           {
-            array_push($eco_arr, 'HIDDEN');
+            for ($i = 0; $i < $num ; $i++)
+            {
+              array_push($eco_arr, 'HIDDEN');
+            }
           }
         }
 
-        $loc_arr = array();
-        if ($visible['location'])
-        {
-          for ($i = 0; $i < $n ; $i++)
+        $loc_arr = $data['location'];
+        if(isset($_COOKIE['location'])) {
+          $location = $_COOKIE['location'];
+          $loc_arr = array();
+          if ($location)
           {
-            array_push($loc_arr, 'HIDDEN');
+            for ($i = 0; $i < $num ; $i++)
+            {
+              array_push($loc_arr, 'HIDDEN');
+            }
           }
         }
 
-        $des_arr = array();
-        if ($visible['description'])
-        {
-          for ($i = 0; $i < $n ; $i++)
+        $des_arr = $data['description'];
+        if(isset($_COOKIE['description'])) {
+          $description = $_COOKIE['description'];
+          $des_arr = array();
+          if ($description)
           {
-            array_push($des_arr, 'HIDDEN');
+            for ($i = 0; $i < $num ; $i++)
+            {
+              array_push($des_arr, 'HIDDEN');
+            }
           }
         }
 
-        $year_arr = array();
-        if ($visible['year'])
-        {
-          for ($i = 0; $i < $n ; $i++)
+        $year_arr = $data['year'];
+        if(isset($_COOKIE['year'])) {
+          $year = $_COOKIE['year'];
+          $year_arr = array();
+          if ($year)
           {
-            array_push($year_arr, 'HIDDEN');
+            for ($i = 0; $i < $num ; $i++)
+            {
+              array_push($year_arr, 'HIDDEN');
+            }
           }
         }
 
-        $mon_arr = array();
-        if ($visible['month'])
-        {
-          for ($i = 0; $i < $n ; $i++)
+        $mon_arr = $data['month'];
+        if(isset($_COOKIE['month'])) {
+          $month = $_COOKIE['month'];
+          $mon_arr = array();
+          if ($month)
           {
-            array_push($mon_arr, 'HIDDEN');
+            for ($i = 0; $i < $num ; $i++)
+            {
+              array_push($mon_arr, 'HIDDEN');
+            }
           }
         }
 
-        $day_arr = array();
-        if ($visible['day'])
-        {
-          for ($i = 0; $i < $n ; $i++)
+        $day_arr = $data['day'];
+        if(isset($_COOKIE['day'])) {
+          $day = $_COOKIE['day'];
+          $day_arr = array();
+          if ($day)
           {
-            array_push($day_arr, 'HIDDEN');
+            for ($i = 0; $i < $num ; $i++)
+            {
+              array_push($day_arr, 'HIDDEN');
+            }
           }
         }
 

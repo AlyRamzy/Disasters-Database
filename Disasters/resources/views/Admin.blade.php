@@ -12,6 +12,8 @@
       <br>
       <h4><a href="admin_reports">Reporting Tool</a></h4>
       <br>
+      <h4><a href="View_Casaulty">View Casualty</a></h4>
+      <br>
     </div>
     <div class="col-sm-8 text-left">
 

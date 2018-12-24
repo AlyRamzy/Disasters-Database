@@ -25,15 +25,15 @@ style="background-image:url('{{asset('img/report1.jpg')}}');
           @for ($i = 0; $i < $n ; $i++)
           <div class="radio">
             <label><input type="radio" name="sel_id" value = " {{ $ids[$i] }} ">{{ $ids[$i] }}</label>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" style="margin-left:25px">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLong{{$i}}" style="margin-left:25px">
               Load Description
             </button>
 
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal fade" id="ModalLong{{$i}}" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Report Content</h5>
+                    <h5 class="modal-title" id="ModalLongTitle">Report Content</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>

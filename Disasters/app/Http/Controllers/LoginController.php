@@ -276,7 +276,7 @@ class LoginController extends Controller
 
     $real_password = $this->proc_result($executor->getPassword($ssn));
     $real_password = $real_password['password'][0];
-    if (password_verify($old_password, $real_password))
+    if (!password_verify($old_password, $real_password))
     {
       echo "Incorrect Password";
       return view('/change_password');
