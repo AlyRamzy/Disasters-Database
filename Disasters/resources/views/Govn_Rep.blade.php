@@ -1,5 +1,15 @@
 @extends('Base')
 
+@section('img')
+style="background-image:url('{{asset('img/gov.jpg')}}');
+
+
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;"
+@endsection
+
 @section('content')
        <br>
       <h4>

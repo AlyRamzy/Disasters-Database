@@ -4,38 +4,39 @@
 
 <br>
 
+<div class="col-sm-8 text-left">
+
+
+  <table class="table table-bordered">
+<thead>
+  <tr>
+    <th scope="col">Incident ID </th>
+    <th scope="col">Incident Name </th>
+    <th scope="col"> Disaster type </th>
+    <th scope="col"> Economical Losses </th>
+    <th scope="col">Incident location </th>
+    <th scope="col">Incident Description </th>
+    <th scope="col">Date</th>
+  </tr>
+</thead>
+<body>
 @for ($i = 0; $i < $n ; $i++)
-<div class="card">
-
-  <div class="card-body" class="effect">
-
-    <h6 class="card-title">Incident </h6>
-
-   <p class="card-text"> {{ $IName[$i] }}</p>
-
-    <h6 class="card-title"> Disaster type </h6>
-
-   <p class="card-text"> {{ $DName[$i] }}</p>
-
-   <h6 class="card-title"> Economical Losses  </h6>
-
-  <p class="card-text"> {{ $Eco_losses[$i] }}</p>
-
-    <h6 class="card-title">Incident location  </h6>
-
-    <p class="card-text"> {{ $Location[$i] }}</p>
-
-    <h6 class="card-title">Incident Description </h6>
-
-   <p class="card-text"> {{ $description[$i] }}</p>
-
-    <h6 class="card-title">Date </h6>
-
-   <p class="card-text"> {{ $year[$i] }} - {{ $month[$i] }} - {{ $day[$i] }} </p>
+    <tr>
+    <td> {{ $ID[$i] }}</td>
+    <td> {{ $IName[$i] }}</td>
+    <td> {{ $DName[$i] }}</td>
+    <td> {{ $Eco_losses[$i] }}</td>
+    <td> {{ $Location[$i] }}</td>
+    <td> {{ $description[$i] }}</td>
+    <td> {{ $year[$i] }} - {{ $month[$i] }} - {{ $day[$i] }}</td>
+    </tr>
+ @endfor
+</thead>
+</tbody>
 
    </div>
    </div>
-     @endfor
+
 
 
 @endsection

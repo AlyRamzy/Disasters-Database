@@ -55,14 +55,12 @@ style="background-image:url('{{asset('img/Causes.jpg')}}');
 
     </div>
     <div class="col-sm-8 text-left">
+      
       <h1 style="text-align:center; color:blue; border-radius:50px 0px;">Search for a specific incident  </h1>
 
         @yield('content6')
     </div>
 
-    <div class="col-sm-2 sidenav">
-
-    </div>
 
   </div>
 </div>

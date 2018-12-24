@@ -2,35 +2,32 @@
 
 @section('content7')
 
+<br>
+
+  <div class="col-sm-8 text-left">
 
 
-@for ($i = 0; $i < $n ; $i++)
-<div class="card">
-
-  <div class="card-body" class="effect">
- <h6 class="card-title">Damage </h6>
-
-<p class="card-text"> {{ $Damage[$i] }}</p>
-
- <h6 class="card-title">Incident </h6>
-
-<p class="card-text"> {{ $Iname[$i] }}</p>
-
- <h6 class="card-title">Incident location  </h6>
-
- <p class="card-text"> {{ $location[$i] }}</p>
-
- <h6 class="card-title">Incident Description </h6>
-
-<p class="card-text"> {{ $description[$i] }}</p>
-
- <h6 class="card-title">Date </h6>
-
-<p class="card-text"> {{ $year[$i] }} - {{ $month[$i] }} - {{ $day[$i] }} </p>
-
+    <table class="table table-bordered" >
+  <thead>
+    <tr>
+      <th scope="col"> Damage </th>
+      <th scope="col">Incident </th>
+      <th scope="col">Incident location </th>
+      <th scope="col">Incident Description </th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for ($i = 0; $i < $n ; $i++)
+    <tr>
+    <td> {{ $Damage[$i] }}</td>
+    <td> {{ $Iname[$i] }}</td>
+    <td> {{ $location[$i] }}</td>
+    <td> {{ $description[$i] }}</td>
+    <td> {{ $year[$i] }} - {{ $month[$i] }} - {{ $day[$i] }}</td>
+    </tr>
+    @endfor
+</tbody>
 </div>
-</div>
-  @endfor
-
 
 @endsection

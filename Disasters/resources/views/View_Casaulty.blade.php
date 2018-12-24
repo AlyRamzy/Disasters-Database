@@ -43,12 +43,17 @@ style="background-image:url('{{asset('img/Causes.jpg')}}');
 <div class="input-group">
 <button type="submit" class="btn btn-success" style="margin-top:15px; padding:10px">Search</button>
 </div>
-
-</form>
-
-    @yield('content7')
 </div>
 
+
+
+
+</div>
+<div class="col-sm-8 text-left">
+
+  <h1 style="text-align:center; color:blue; border-radius:50px 0px;">Search for a specific casualty  </h1>
+
+    @yield('content7')
 </div>
 </div>
 

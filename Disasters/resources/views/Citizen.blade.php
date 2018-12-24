@@ -1,5 +1,15 @@
 @extends('Base')
 
+@section('img')
+style="background-image:url('{{asset('img/citizen.jpg')}}');
+
+
+
+  background-position: up;
+  background-repeat: no-repeat;
+  background-size: cover;"
+@endsection
+
 @section('content')
 <br>
 <h4><a href="Asking">Ask a question</a></h4>
