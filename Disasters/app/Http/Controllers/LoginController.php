@@ -206,11 +206,7 @@ class LoginController extends Controller
       $address = 'null';
     } else {
       $address = "'".$this->test_input(request('address'))."'";
-      if (!preg_match("/^[a-zA-Z]+\ +[0-9]+$/",$address)) {
-        $addressErr = "Only letters, numbers and white space allowed";
-        echo $addressErr;
-        return view('\Login');
-    }
+      return view('\Login');
     }
 
     if (empty(request('gender'))) {
